@@ -228,27 +228,25 @@
             font-size: 1.25rem;
             cursor: pointer;
             padding: 0.25rem;
+            z-index: 1001;
         }
 
         .mobile-menu {
             position: fixed;
-            top: 100%;
+            top: 0;
             left: 0;
             width: 100%;
+            height: 100%;
             background: var(--bg-primary);
-            border-top: 1px solid var(--border);
-            padding: 1rem 0;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
+            padding-top: 5rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
             z-index: 999;
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: all;
+            transform: translateX(0);
         }
 
         .mobile-menu-links {
@@ -260,9 +258,10 @@
         .mobile-menu-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border);
             transition: all 0.2s ease;
+            font-size: 1.1rem;
         }
 
         .mobile-menu-links a:hover {
@@ -271,7 +270,7 @@
         }
 
         .mobile-menu-actions {
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 1.5rem;
             border-top: 1px solid var(--border);
             margin-top: 0.5rem;
             display: flex;
@@ -299,9 +298,13 @@
 
         .hero-buttons {
             display: flex;
+            flex-direction: column;
             gap: 1rem;
+            align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
         /* Features Section */
@@ -424,22 +427,28 @@
         }
 
         .auth-container {
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
             width: 100%;
         }
 
+        @media (min-width: 1200px) {
+            .auth-container {
+                max-width: 600px;
+            }
+        }
+
         .auth-card {
             background: var(--bg-primary);
-            padding: 2.5rem 2rem;
-            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
         }
 
         .auth-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .auth-logo {
@@ -447,31 +456,31 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--text-secondary);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .form-input {
             width: 100%;
-            padding: 0.875rem 1rem;
+            padding: 1rem 1.25rem;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             color: var(--text-primary);
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
         }
 
@@ -482,15 +491,15 @@
         }
 
         .form-actions {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
 
         .auth-divider {
             text-align: center;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             color: var(--text-muted);
             position: relative;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .auth-divider::before {
@@ -511,9 +520,9 @@
 
         .auth-footer {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         .auth-footer a {
@@ -771,6 +780,11 @@
             .copyright {
                 margin-bottom: 0;
             }
+            
+            .hero-buttons {
+                flex-direction: row;
+                max-width: none;
+            }
         }
 
         /* Animations */
@@ -867,6 +881,26 @@
             font-weight: 500;
             margin-left: 0.5rem;
         }
+        
+        /* Disabled buttons */
+        .btn-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        /* Mobile menu close button */
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+        }
     </style>
 </head>
 <body>
@@ -905,12 +939,13 @@
                 </div>
             </div>
 
-            <button class="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
         <div class="mobile-menu-links">
             <a href="/features">Features</a>
             <a href="/pricing">Pricing</a>
@@ -1178,7 +1213,7 @@
                                 <div class="feature-content">
                                     <h3>Getting Started</h3>
                                     <p>Learn how to install and configure Modern Server Administrator for your development environment.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">View Guide</a>
+                                    <a href="/docs/getting-started" class="btn btn-outline btn-sm mt-2">View Guide</a>
                                 </div>
                             </div>
                             <div class="feature">
@@ -1186,7 +1221,7 @@
                                 <div class="feature-content">
                                     <h3>Configuration</h3>
                                     <p>Detailed documentation on server configuration, environment variables, and advanced settings.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">View Guide</a>
+                                    <a href="/docs/configuration" class="btn btn-outline btn-sm mt-2">View Guide</a>
                                 </div>
                             </div>
                             <div class="feature">
@@ -1194,7 +1229,7 @@
                                 <div class="feature-content">
                                     <h3>API Reference</h3>
                                     <p>Complete API documentation for integrating Modern Server Administrator with your development workflow.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">View Reference</a>
+                                    <a href="/docs/api" class="btn btn-outline btn-sm mt-2">View Reference</a>
                                 </div>
                             </div>
                             <div class="feature">
@@ -1202,7 +1237,7 @@
                                 <div class="feature-content">
                                     <h3>FAQ</h3>
                                     <p>Answers to frequently asked questions about installation, configuration, and troubleshooting.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">View FAQ</a>
+                                    <a href="/docs/faq" class="btn btn-outline btn-sm mt-2">View FAQ</a>
                                 </div>
                             </div>
                         </div>
@@ -1226,7 +1261,7 @@
                                 <div class="feature-content">
                                     <h3>Knowledge Base</h3>
                                     <p>Browse our comprehensive knowledge base with articles, tutorials, and troubleshooting guides.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">Browse Articles</a>
+                                    <a href="/docs" class="btn btn-outline btn-sm mt-2">Browse Articles</a>
                                 </div>
                             </div>
                             <div class="feature">
@@ -1319,8 +1354,8 @@
                             </div>
                             <div class="form-actions">
                                 <a href="#" class="btn btn-primary btn-block">Download for Windows</a>
-                                <a href="#" class="btn btn-outline btn-block mt-2">Download for macOS</a>
-                                <a href="#" class="btn btn-outline btn-block mt-2">Download for Linux</a>
+                                <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for macOS (Coming Soon)</a>
+                                <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for Linux (Coming Soon)</a>
                             </div>
                             <div class="auth-footer">
                                 <p>By downloading, you agree to our <a href="/terms">Terms of Service</a></p>
@@ -1621,12 +1656,16 @@
         let isAuthenticated = false;
         let currentUser = null;
 
-        // Page routing system
+        // Extended Page routing system
         const routes = {
             '/': 'home-page',
             '/features': 'features-page',
             '/pricing': 'pricing-page',
             '/docs': 'docs-page',
+            '/docs/getting-started': 'docs-getting-started',
+            '/docs/configuration': 'docs-configuration',
+            '/docs/api': 'docs-api',
+            '/docs/faq': 'docs-faq',
             '/support': 'support-page',
             '/contact': 'contact-page',
             '/download': 'download-page',
@@ -1640,18 +1679,34 @@
         };
 
         // Mobile Menu
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
         
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            mobileMenu.classList.toggle('active');
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-content') && !e.target.closest('.mobile-menu')) {
+            if (!e.target.closest('.mobile-menu') && !e.target.closest('.mobile-menu-btn')) {
                 mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
 
@@ -1680,6 +1735,7 @@
 
             // Close mobile menu
             mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
 
             // Show target page
             const targetPage = routes[path];
@@ -1712,8 +1768,16 @@
 
         // Initial page load
         document.addEventListener('DOMContentLoaded', () => {
-            const initialPath = window.location.pathname;
-            navigateTo(initialPath);
+            // Get the current path from the URL
+            const path = window.location.pathname;
+            
+            // If we're at the root path, show home page
+            if (path === '/' || path === '' || path === '/index.html') {
+                navigateTo('/');
+            } else {
+                // Otherwise navigate to the current path
+                navigateTo(path);
+            }
             
             // Update auth state
             updateAuthState();
@@ -1721,10 +1785,21 @@
 
         // Navigation link handling
         document.addEventListener('click', (e) => {
+            // Handle regular navigation links
             if (e.target.matches('a[href^="/"]')) {
                 e.preventDefault();
                 const path = e.target.getAttribute('href');
                 navigateTo(path);
+            }
+            
+            // Handle "View Guide" buttons in documentation
+            if (e.target.matches('.btn-outline')) {
+                const parentLink = e.target.closest('a');
+                if (parentLink && parentLink.getAttribute('href')) {
+                    e.preventDefault();
+                    const path = parentLink.getAttribute('href');
+                    navigateTo(path);
+                }
             }
         });
 
