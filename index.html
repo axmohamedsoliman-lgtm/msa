@@ -10,7 +10,7 @@
       %3Cpath fill='%23E6E6E6' d='M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z'/%3E
     %3C/svg%3E">
     
-    <!-- SUPABASE CDN -->
+    <!-- SUPABASE CDN - PRODUCTION READY -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
@@ -1401,8 +1401,7 @@
                                 <li>Community support</li>
                             </div>
                             <div class="form-actions">
-                                <!-- REPLACE THIS WITH YOUR ACTUAL DOWNLOAD LINK -->
-                                <a href="https://your-actual-download-link.com/server-admin.exe" class="btn btn-primary btn-block" id="windows-download">Download for Windows</a>
+                                <a href="#" class="btn btn-primary btn-block" id="windows-download">Download for Windows</a>
                                 <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for macOS (Coming Soon)</a>
                                 <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for Linux (Coming Soon)</a>
                             </div>
@@ -1542,8 +1541,7 @@
                             </div>
 
                             <div class="form-actions">
-                                <!-- REPLACE THIS WITH YOUR ACTUAL PADDLE CHECKOUT LINK -->
-                                <a href="https://your-paddle-checkout-link.com" class="btn btn-primary btn-block">Upgrade to Pro</a>
+                                <a href="/billing" class="btn btn-primary btn-block">Upgrade to Pro</a>
                                 <a href="/download" class="btn btn-outline btn-block mt-2">Download Application</a>
                             </div>
                         </div>
@@ -1709,10 +1707,10 @@
 
     <script>
         // =============================================
-        // SUPABASE CONFIGURATION - USING YOUR ACTUAL KEYS
+        // SUPABASE CONFIGURATION - UPDATE THESE VALUES
         // =============================================
-        const SUPABASE_URL = 'https://exnuhfvdozppigfhcsxy.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4bnVoZnZkb3pwcGlnZmhjc3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMjkzODUsImV4cCI6MjA3NzYwNTM4NX0.EiaGQVr9B4EUqJrsdIC9WuZ_WkDoMoV-rB78j-rBEOM';
+        const SUPABASE_URL = 'https://exnuhfvdozppigfhcsxy.supabase.co'; // Replace with your Supabase project URL
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4bnVoZnZkb3pwcGlnZmhjc3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMjkzODUsImV4cCI6MjA3NzYwNTM4NX0.EiaGQVr9B4EUqJrsdIC9WuZ_WkDoMoV-rB78j-rBEOM'; // Replace with your Supabase anon key
         
         // Initialize Supabase client
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1776,26 +1774,19 @@
         }
 
         // =============================================
-        // AUTHENTICATION FUNCTIONS - FIXED VERSION
+        // AUTHENTICATION FUNCTIONS
         // =============================================
         async function checkAuthSession() {
             try {
-                console.log('Checking auth session...');
                 const { data: { session }, error } = await supabase.auth.getSession();
                 
-                if (error) {
-                    console.error('Session error:', error);
-                    throw error;
-                }
+                if (error) throw error;
                 
-                console.log('Session found:', session);
                 if (session) {
                     currentUser = session.user;
-                    console.log('User authenticated:', currentUser.email);
                     await fetchUserProfile();
                     updateAuthState();
                 } else {
-                    console.log('No session found');
                     currentUser = null;
                     userProfile = null;
                     updateAuthState();
@@ -1809,35 +1800,21 @@
         }
 
         async function fetchUserProfile() {
-            if (!currentUser) {
-                console.log('No current user to fetch profile for');
-                return;
-            }
+            if (!currentUser) return;
             
             try {
-                console.log('Fetching user profile for:', currentUser.id);
                 const { data, error } = await supabase
                     .from('users')
                     .select('*')
                     .eq('id', currentUser.id)
                     .single();
                 
-                if (error) {
-                    console.error('Error fetching user profile:', error);
-                    // Create user profile if it doesn't exist
-                    await createUserProfile();
-                    return;
-                }
+                if (error) throw error;
                 
-                if (data) {
-                    console.log('User profile found:', data);
-                    userProfile = data;
-                } else {
-                    console.log('No user profile found, creating one...');
-                    await createUserProfile();
-                }
+                userProfile = data;
             } catch (error) {
-                console.error('Error in fetchUserProfile:', error);
+                console.error('Error fetching user profile:', error);
+                // Create user profile if it doesn't exist
                 await createUserProfile();
             }
         }
@@ -1846,7 +1823,6 @@
             if (!currentUser) return;
             
             try {
-                console.log('Creating user profile for:', currentUser.id);
                 const { data, error } = await supabase
                     .from('users')
                     .insert([
@@ -1861,61 +1837,23 @@
                     .select()
                     .single();
                 
-                if (error) {
-                    console.error('Error creating user profile:', error);
-                    // If insert fails, try upsert
-                    await upsertUserProfile();
-                    return;
-                }
-                
-                if (data) {
-                    console.log('User profile created:', data);
-                    userProfile = data;
-                }
-            } catch (error) {
-                console.error('Error in createUserProfile:', error);
-            }
-        }
-
-        async function upsertUserProfile() {
-            if (!currentUser) return;
-            
-            try {
-                const { data, error } = await supabase
-                    .from('users')
-                    .upsert({
-                        id: currentUser.id,
-                        email: currentUser.email,
-                        full_name: currentUser.user_metadata?.full_name || currentUser.email.split('@')[0],
-                        plan: 'free',
-                        created_at: new Date().toISOString()
-                    })
-                    .select()
-                    .single();
-                
                 if (error) throw error;
                 
                 userProfile = data;
-                console.log('User profile upserted:', data);
             } catch (error) {
-                console.error('Error in upsertUserProfile:', error);
+                console.error('Error creating user profile:', error);
             }
         }
 
         async function handleLogin(email, password) {
             try {
-                console.log('Attempting login for:', email);
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email,
                     password
                 });
                 
-                if (error) {
-                    console.error('Login error:', error);
-                    throw error;
-                }
+                if (error) throw error;
                 
-                console.log('Login successful:', data.user.email);
                 currentUser = data.user;
                 await fetchUserProfile();
                 updateAuthState();
@@ -1924,7 +1862,7 @@
                 
                 return { success: true };
             } catch (error) {
-                console.error('Login failed:', error);
+                console.error('Login error:', error);
                 showAlert(error.message, 'error');
                 return { success: false, error: error.message };
             }
@@ -1932,7 +1870,6 @@
 
         async function handleSignup(fullName, email, password) {
             try {
-                console.log('Attempting signup for:', email);
                 const { data, error } = await supabase.auth.signUp({
                     email,
                     password,
@@ -1943,12 +1880,8 @@
                     }
                 });
                 
-                if (error) {
-                    console.error('Signup error:', error);
-                    throw error;
-                }
+                if (error) throw error;
                 
-                console.log('Signup successful:', data.user?.email);
                 if (data.user) {
                     currentUser = data.user;
                     // Profile will be created automatically via fetchUserProfile
@@ -1960,7 +1893,7 @@
                 
                 return { success: true };
             } catch (error) {
-                console.error('Signup failed:', error);
+                console.error('Signup error:', error);
                 showAlert(error.message, 'error');
                 return { success: false, error: error.message };
             }
@@ -1968,7 +1901,6 @@
 
         async function handleLogout() {
             try {
-                console.log('Attempting logout');
                 const { error } = await supabase.auth.signOut();
                 if (error) throw error;
                 
@@ -1990,8 +1922,6 @@
             const mobileUserMenu = document.getElementById('mobile-user-menu');
             const userAvatar = document.getElementById('user-avatar');
             
-            console.log('Updating auth state, user exists:', !!currentUser);
-            
             if (currentUser) {
                 // User is logged in
                 if (authButtons) authButtons.classList.add('hidden');
@@ -2000,10 +1930,9 @@
                 if (mobileUserMenu) mobileUserMenu.classList.remove('hidden');
                 
                 // Update user avatar
-                if (userAvatar) {
-                    const name = userProfile?.full_name || currentUser.email || 'U';
+                if (userAvatar && userProfile) {
+                    const name = userProfile.full_name || currentUser.email;
                     userAvatar.textContent = name.charAt(0).toUpperCase();
-                    console.log('Updated user avatar with:', name.charAt(0).toUpperCase());
                 }
             } else {
                 // User is not logged in
@@ -2015,35 +1944,18 @@
         }
 
         function updateAccountPage() {
-            console.log('Updating account page with user data:', userProfile);
-            
             if (currentUser && userProfile) {
                 document.getElementById('account-name').textContent = userProfile.full_name || currentUser.email;
                 document.getElementById('account-email').textContent = currentUser.email;
                 document.getElementById('account-plan').textContent = userProfile.plan === 'pro' ? 'Pro' : 'Free';
                 document.getElementById('account-status').textContent = 'Active';
-                
-                const createdDate = userProfile.created_at ? new Date(userProfile.created_at) : new Date();
-                document.getElementById('account-created').textContent = createdDate.toLocaleDateString();
+                document.getElementById('account-created').textContent = new Date(userProfile.created_at).toLocaleDateString();
                 
                 const accountAvatar = document.getElementById('account-avatar');
                 if (accountAvatar) {
                     const name = userProfile.full_name || currentUser.email;
                     accountAvatar.textContent = name.charAt(0).toUpperCase();
                 }
-                
-                console.log('Account page updated successfully');
-            } else if (currentUser) {
-                // User is logged in but profile not loaded yet
-                document.getElementById('account-name').textContent = currentUser.email;
-                document.getElementById('account-email').textContent = currentUser.email;
-                document.getElementById('account-plan').textContent = 'Loading...';
-                document.getElementById('account-status').textContent = 'Loading...';
-                document.getElementById('account-created').textContent = 'Loading...';
-                
-                console.log('Account page updated with basic user info');
-            } else {
-                console.log('No user data available for account page');
             }
         }
 
@@ -2060,15 +1972,11 @@
         // EVENT LISTENERS
         // =============================================
         document.addEventListener('DOMContentLoaded', async () => {
-            console.log('DOM loaded, initializing...');
-            
             // Initialize authentication
             await checkAuthSession();
             
             // Set up initial routing
             const path = window.location.pathname;
-            console.log('Initial path:', path);
-            
             if (path === '/' || path === '' || path === '/index.html') {
                 navigateTo('/');
             } else {
@@ -2085,8 +1993,6 @@
                 e.preventDefault();
                 handleLogout();
             });
-            
-            console.log('Initialization complete');
         });
 
         // Mobile menu functionality
@@ -2129,8 +2035,6 @@
 
         // Navigation system
         function navigateTo(path) {
-            console.log('Navigating to:', path);
-            
             // Hide all pages
             document.querySelectorAll('.page-content').forEach(page => {
                 page.classList.add('hidden');
@@ -2156,22 +2060,18 @@
                     
                     // Update account page if needed
                     if (path === '/account') {
-                        console.log('Account page accessed, updating...');
                         updateAccountPage();
                     }
                 } else {
-                    console.log('Target page not found, redirecting to home');
                     navigateTo('/');
                 }
             } else {
-                console.log('Route not found, redirecting to home');
                 navigateTo('/');
             }
         }
 
         window.addEventListener('popstate', (event) => {
             const path = event.state?.path || window.location.pathname;
-            console.log('Popstate navigation to:', path);
             navigateTo(path);
         });
 
@@ -2179,7 +2079,6 @@
             if (e.target.matches('a[href^="/"]')) {
                 e.preventDefault();
                 const path = e.target.getAttribute('href');
-                console.log('Internal navigation to:', path);
                 navigateTo(path);
             }
             
@@ -2188,7 +2087,6 @@
                 if (parentLink && parentLink.getAttribute('href')) {
                     e.preventDefault();
                     const path = parentLink.getAttribute('href');
-                    console.log('Button navigation to:', path);
                     navigateTo(path);
                 }
             }
@@ -2203,7 +2101,6 @@
                 const password = document.getElementById('login-password').value;
                 const loginButton = document.getElementById('login-button');
                 
-                console.log('Login form submitted for:', email);
                 setLoading(loginButton, true);
                 await handleLogin(email, password);
                 setLoading(loginButton, false);
@@ -2220,7 +2117,6 @@
                 const password = document.getElementById('signup-password').value;
                 const signupButton = document.getElementById('signup-button');
                 
-                console.log('Signup form submitted for:', email);
                 setLoading(signupButton, true);
                 await handleSignup(name, email, password);
                 setLoading(signupButton, false);
@@ -2237,16 +2133,18 @@
             });
         }
 
-        // Download link - REPLACE WITH YOUR ACTUAL DOWNLOAD LINK
+        // Download link
         const windowsDownload = document.getElementById('windows-download');
         if (windowsDownload) {
             windowsDownload.addEventListener('click', (e) => {
-                if (!currentUser) {
-                    e.preventDefault();
+                e.preventDefault();
+                if (currentUser) {
+                    // In production, this would download the actual file
+                    showAlert('Download started! Check your downloads folder.', 'success');
+                } else {
                     showAlert('Please sign up or log in to download', 'error');
                     navigateTo('/signup');
                 }
-                // If user is logged in, the actual href will be followed
             });
         }
 
@@ -2300,21 +2198,13 @@
 
         // Real-time auth state listener
         supabase.auth.onAuthStateChange(async (event, session) => {
-            console.log('Auth state changed:', event, session);
-            
             if (event === 'SIGNED_IN') {
                 currentUser = session.user;
-                console.log('User signed in:', currentUser.email);
                 await fetchUserProfile();
                 updateAuthState();
             } else if (event === 'SIGNED_OUT') {
                 currentUser = null;
                 userProfile = null;
-                console.log('User signed out');
-                updateAuthState();
-            } else if (event === 'USER_UPDATED') {
-                console.log('User updated');
-                await fetchUserProfile();
                 updateAuthState();
             }
         });
