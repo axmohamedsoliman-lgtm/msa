@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Server Administrator - Professional Server Management</title>
+    <title>Modern Server Administrator - Enterprise-Grade Local Development</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
     %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E
       %3Crect width='64' height='64' rx='12' fill='%23000000'/%3E
@@ -27,107 +28,40 @@
             --bg-tertiary: #21262d;
             --text-primary: #f0f6fc;
             --text-secondary: #8b949e;
-            --text-muted: #484f58;
-            --border: #30363d;
-            --accent: #1f6feb;
-            --accent-hover: #2a7aef;
-            --success: #238636;
-            --warning: #d29922;
-            --error: #f85149;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            --radius: 6px;
+            --text-accent: #58a6ff;
+            --border-primary: #30363d;
+            --border-secondary: #21262d;
+            --accent-blue: #1f6feb;
+            --accent-green: #238636;
+            --accent-purple: #8957e5;
+            --gradient-primary: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%);
+            --gradient-secondary: linear-gradient(135deg, #238636 0%, #1f6feb 100%);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: var(--bg-primary);
             color: var(--text-primary);
-            background: var(--bg-primary);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            line-height: 1.25;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 1.75rem);
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
-        }
-
-        .text-lead {
-            font-size: 1.25rem;
-        }
-
-        /* Layout */
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .container-narrow {
-            max-width: 900px;
-        }
-
-        .page-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .page-content {
-            flex: 1;
-            padding-top: 5rem;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Navigation */
+        /* Professional Header */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-primary);
             z-index: 1000;
             padding: 1rem 0;
         }
 
-        .nav-content {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -136,2188 +70,683 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
-            font-size: 1.25rem;
-            color: var(--text-primary);
+            gap: 12px;
             text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-icon::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            position: absolute;
+            z-index: 3;
         }
 
         .nav-links {
-            display: none;
+            display: flex;
             gap: 2rem;
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-link:hover {
             color: var(--text-primary);
         }
 
-        .nav-actions {
-            display: none;
-            gap: 1rem;
-            align-items: center;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
             cursor: pointer;
         }
 
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 111, 235, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(31, 111, 235, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(137, 87, 229, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(31, 111, 235, 0.1);
+            color: var(--accent-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(31, 111, 235, 0.2);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .btn-primary {
-            background: var(--accent);
+            background: var(--gradient-primary);
             color: white;
-            border-color: var(--accent);
+            padding: 15px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(31, 111, 235, 0.4);
         }
 
         .btn-secondary {
             background: var(--bg-tertiary);
             color: var(--text-primary);
-            border-color: var(--border);
+            padding: 15px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-primary);
         }
 
         .btn-secondary:hover {
             background: var(--bg-secondary);
-            border-color: var(--text-muted);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: var(--border);
-        }
-
-        .btn-outline:hover {
-            background: var(--bg-tertiary);
-            border-color: var(--text-muted);
-        }
-
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-        }
-
-        .btn-block {
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            cursor: pointer;
-            padding: 0.25rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            padding-top: 5rem;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 999;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .mobile-menu-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            transition: all 0.2s ease;
-            font-size: 1.1rem;
-        }
-
-        .mobile-menu-links a:hover {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-        }
-
-        .mobile-menu-actions {
-            padding: 1.5rem 1.5rem;
-            border-top: 1px solid var(--border);
-            margin-top: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 300px;
-            margin: 0 auto;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         /* Features Section */
         .features {
-            padding: 6rem 0;
+            padding: 100px 0;
             background: var(--bg-secondary);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 4rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .feature {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
+        .feature-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .feature-content h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 0;
-            background: var(--bg-primary);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            text-align: center;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-        }
-
-        .pricing-badge {
-            display: inline-block;
-            background: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
             color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
         }
 
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-
-        .price-period {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .price-note {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .feature-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        /* Authentication Forms */
-        .auth-section {
-            background: var(--bg-secondary);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 6rem 0 2rem;
-        }
-
-        .auth-container {
-            max-width: 500px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        @media (min-width: 1200px) {
-            .auth-container {
-                max-width: 600px;
-            }
-        }
-
-        .auth-card {
-            background: var(--bg-primary);
-            padding: 3rem 2.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .auth-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
+        .feature-title {
             font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.25rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.1);
-        }
-
-        .form-actions {
-            margin-top: 2rem;
-        }
-
-        .auth-divider {
-            text-align: center;
-            margin: 2rem 0;
-            color: var(--text-muted);
-            position: relative;
-            font-size: 1rem;
-        }
-
-        .auth-divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .auth-divider span {
-            background: var(--bg-primary);
-            padding: 0 1rem;
-            position: relative;
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .auth-footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid transparent;
-            border-top: 2px solid currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Legal Pages */
-        .legal-section {
-            background: var(--bg-secondary);
-            min-height: 100vh;
-            padding: 6rem 0 2rem;
-        }
-
-        .legal-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .legal-content {
-            background: var(--bg-primary);
-            padding: 2.5rem 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .legal-section h2 {
-            color: var(--accent);
-            margin-top: 2rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .legal-section h3 {
             color: var(--text-primary);
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-size: 1.2rem;
         }
 
-        .legal-section p, .legal-section li {
+        .feature-description {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .legal-section ul {
-            padding-left: 1.5rem;
+        /* Download Section */
+        .download {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            text-align: center;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding: 0 2rem;
+        }
+
+        .download-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
         }
 
-        .legal-section li {
-            margin-bottom: 0.5rem;
+        .windows { color: #0078d4; }
+        .mac { color: #999999; }
+        .linux { color: #f1502f; }
+
+        .download-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .download-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Status Section */
+        .status {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto 0;
+            padding: 0 2rem;
+        }
+
+        .status-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-working {
+            background: rgba(35, 134, 54, 0.1);
+            color: #3fb950;
+            border: 1px solid rgba(35, 134, 54, 0.2);
+        }
+
+        .status-beta {
+            background: rgba(187, 128, 9, 0.1);
+            color: #d29922;
+            border: 1px solid rgba(187, 128, 9, 0.2);
+        }
+
+        .status-future {
+            background: rgba(31, 111, 235, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(31, 111, 235, 0.2);
+        }
+
+        .status-list {
+            list-style: none;
+        }
+
+        .status-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .status-list li:last-child {
+            border-bottom: none;
         }
 
         /* Footer */
         .footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0 1.5rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-primary);
+            padding: 3rem 0;
+            text-align: center;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            max-width: 400px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .footer-links-group h4 {
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.125rem;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
+        .footer-text {
             color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-            text-align: center;
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.85rem;
             margin-bottom: 1rem;
         }
 
-        .footer-legal {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-legal a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.85rem;
-        }
-
-        .footer-legal a:hover {
-            color: var(--accent);
-        }
-
-        /* User Account */
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-        }
-
-        .user-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 0.5rem 0;
-            min-width: 180px;
-            box-shadow: var(--shadow);
-            display: none;
-        }
-
-        .user-menu.active {
-            display: block;
-        }
-
-        .user-menu-item {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
-        }
-
-        .user-menu-item:hover {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-        }
-
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-2 {
-            margin-top: 2rem;
-        }
-
-        .mb-2 {
-            margin-bottom: 2rem;
-        }
-
-        /* Desktop Styles */
-        @media (min-width: 768px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: none;
-            }
-
-            .nav-links {
-                display: flex;
-            }
-
-            .nav-actions {
-                display: flex;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 2fr 1fr 1fr;
-                text-align: left;
-            }
-
-            .footer-logo {
-                justify-content: flex-start;
-            }
-
-            .footer-description {
-                margin: 0;
-            }
-
-            .footer-bottom {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .copyright {
-                margin-bottom: 0;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .hero-buttons {
-                flex-direction: row;
-                max-width: none;
+            .section-title {
+                font-size: 2rem;
             }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .page-transition {
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+            
+            .nav-links {
+                display: none;
             }
-            to {
-                opacity: 1;
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
             }
-        }
-
-        /* Billing Toggle */
-        .billing-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .toggle-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--bg-tertiary);
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background-color: var(--accent);
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(30px);
-        }
-
-        .savings-badge {
-            display: inline-block;
-            background: var(--success);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-left: 0.5rem;
-        }
-        
-        /* Disabled buttons */
-        .btn-disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        
-        /* Mobile menu close button */
-        .mobile-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1002;
-        }
-
-        /* Alert Messages */
-        .alert {
-            padding: 1rem;
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .alert-success {
-            background: rgba(35, 134, 54, 0.1);
-            border: 1px solid var(--success);
-            color: var(--success);
-        }
-
-        .alert-error {
-            background: rgba(248, 81, 73, 0.1);
-            border: 1px solid var(--error);
-            color: var(--error);
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Professional Navigation -->
     <nav class="navbar">
-        <div class="container nav-content">
-            <a href="/" class="logo">
-                <svg width="24" height="24" viewBox="0 0 64 64">
-                    <rect width="64" height="64" rx="12" fill="#000000"/>
-                    <path fill="#E6E6E6" d="M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z"/>
-                </svg>
-                Server Admin
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                Modern Server Admin
             </a>
-
             <div class="nav-links">
-                <a href="/features">Features</a>
-                <a href="/pricing">Pricing</a>
-                <a href="/docs">Documentation</a>
-                <a href="/support">Support</a>
-                <a href="/contact">Contact</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#download" class="nav-link">Download</a>
+                <a href="#status" class="nav-link">Status</a>
+                <a href="https://github.com/your-username/modern-server-admin" class="nav-link">GitHub</a>
+                <a href="#download" class="cta-button">Get Started Free</a>
             </div>
-
-            <div class="nav-actions">
-                <div id="auth-buttons">
-                    <a href="/login" class="btn btn-outline btn-sm">Sign in</a>
-                    <a href="/signup" class="btn btn-primary btn-sm">Sign up</a>
-                </div>
-                <div id="user-menu-container" class="hidden">
-                    <div class="user-avatar" id="user-avatar">U</div>
-                    <div class="user-menu" id="user-menu">
-                        <a href="/account" class="user-menu-item">Account</a>
-                        <a href="/billing" class="user-menu-item">Billing</a>
-                        <a href="/download" class="user-menu-item">Download</a>
-                        <a href="#" class="user-menu-item" id="logout-button">Sign out</a>
-                    </div>
-                </div>
-            </div>
-
-            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
-        <div class="mobile-menu-links">
-            <a href="/features">Features</a>
-            <a href="/pricing">Pricing</a>
-            <a href="/docs">Documentation</a>
-            <a href="/support">Support</a>
-            <a href="/contact">Contact</a>
-        </div>
-        <div class="mobile-menu-actions" id="mobile-auth-buttons">
-            <a href="/login" class="btn btn-outline btn-block">Sign in</a>
-            <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
-        </div>
-        <div class="mobile-menu-actions hidden" id="mobile-user-menu">
-            <a href="/account" class="btn btn-outline btn-block">Account</a>
-            <a href="/billing" class="btn btn-outline btn-block">Billing</a>
-            <a href="/download" class="btn btn-outline btn-block">Download</a>
-            <a href="#" class="btn btn-outline btn-block" id="mobile-logout-button">Sign out</a>
-        </div>
-    </div>
-
-    <!-- Alert Container -->
-    <div id="alert-container" style="position: fixed; top: 80px; left: 0; right: 0; z-index: 1000; padding: 0 1.5rem;"></div>
-
-    <!-- Main Content Container -->
-    <div class="page-container">
-        <div id="main-content">
-            <!-- Home Page -->
-            <div id="home-page" class="page-content">
-                <!-- Hero Section -->
-                <section class="hero">
-                    <div class="container">
-                        <div class="hero-content">
-                            <h1 class="fade-in">Modern Server Administrator</h1>
-                            <p class="hero-subtitle fade-in">
-                                The professional server management solution that auto-detects your projects. 
-                                Zero configuration, instant setup, perfect for development teams.
-                            </p>
-                            <div class="hero-buttons">
-                                <a href="/download" class="btn btn-primary fade-in">Download Free</a>
-                                <a href="/docs" class="btn btn-outline fade-in">View Documentation</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Features Section -->
-                <section id="features" class="features">
-                    <div class="container">
-                        <div class="section-header fade-in">
-                            <h2>Professional Server Management</h2>
-                            <p class="section-subtitle">
-                                Everything you need to manage local development servers without the complexity
-                            </p>
-                        </div>
-                        <div class="features-grid">
-                            <div class="feature fade-in">
-                                <div class="feature-icon">⚡</div>
-                                <div class="feature-content">
-                                    <h3>Auto-Detection</h3>
-                                    <p>Automatically detects and configures PHP, Node.js, Flask, and static sites without manual setup.</p>
-                                </div>
-                            </div>
-                            <div class="feature fade-in">
-                                <div class="feature-icon">🔧</div>
-                                <div class="feature-content">
-                                    <h3>Multi-Server Support</h3>
-                                    <p>Run multiple servers simultaneously with intelligent port management and conflict resolution.</p>
-                                </div>
-                            </div>
-                            <div class="feature fade-in">
-                                <div class="feature-icon">💾</div>
-                                <div class="feature-content">
-                                    <h3>Portable</h3>
-                                    <p>Completely portable installation. Run from any directory without system modifications.</p>
-                                </div>
-                            </div>
-                            <div class="feature fade-in">
-                                <div class="feature-icon">🌐</div>
-                                <div class="feature-content">
-                                    <h3>Network Access</h3>
-                                    <p>Access your servers from any device on the network for easy testing and collaboration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Pricing Section -->
-                <section id="pricing" class="pricing">
-                    <div class="container">
-                        <div class="section-header fade-in">
-                            <h2>Pricing</h2>
-                            <p class="section-subtitle">
-                                Get started for Free. Upgrade to increase limits.
-                            </p>
-                        </div>
-
-                        <div class="billing-toggle">
-                            <span class="toggle-label">Monthly</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="billing-toggle">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Yearly <span class="savings-badge">Save 25%</span></span>
-                        </div>
-
-                        <div class="pricing-grid">
-                            <div class="pricing-card fade-in">
-                                <h3>Free</h3>
-                                <div class="price" id="free-price">$0</div>
-                                <p class="price-period">per month, no credit card required</p>
-                                <ul class="feature-list">
-                                    <li>3 simultaneous servers</li>
-                                    <li>PHP & static site support</li>
-                                    <li>Auto-detection</li>
-                                    <li>Basic web interface</li>
-                                    <li>Community support</li>
-                                </ul>
-                                <a href="/download" class="btn btn-outline btn-block">Download</a>
-                            </div>
-                            <div class="pricing-card featured fade-in">
-                                <div class="pricing-badge">Popular</div>
-                                <h3>Pro</h3>
-                                <div class="price" id="pro-price">$3</div>
-                                <p class="price-period" id="pro-period">per month</p>
-                                <p class="price-note" id="pro-note">$10 from the second month, billed monthly</p>
-                                <ul class="feature-list">
-                                    <li>Unlimited servers</li>
-                                    <li>All server types</li>
-                                    <li>Project templates</li>
-                                    <li>File manager</li>
-                                    <li>Environment variables</li>
-                                    <li>Priority support</li>
-                                </ul>
-                                <a href="/signup" class="btn btn-primary btn-block">Get started</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-rocket"></i> ENTERPRISE BETA
             </div>
-
-            <!-- Features Page -->
-            <div id="features-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container">
-                        <div class="section-header">
-                            <h1>Features</h1>
-                            <p class="section-subtitle">
-                                Everything you need for professional server management
-                            </p>
-                        </div>
-                        <div class="features-grid">
-                            <div class="feature">
-                                <div class="feature-icon">🔍</div>
-                                <div class="feature-content">
-                                    <h3>Intelligent Auto-Detection</h3>
-                                    <p>Our system automatically detects your project type and configures the appropriate server environment without any manual intervention.</p>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">⚡</div>
-                                <div class="feature-content">
-                                    <h3>Lightning Fast Performance</h3>
-                                    <p>Optimized for speed with minimal resource usage. Start servers in milliseconds and handle dozens of projects simultaneously.</p>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">🔒</div>
-                                <div class="feature-content">
-                                    <h3>Enterprise Security</h3>
-                                    <p>Optional password protection, isolated server environments, and secure update system to keep your projects safe.</p>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">🔄</div>
-                                <div class="feature-content">
-                                    <h3>Seamless Updates</h3>
-                                    <p>Automatic updates with rollback capability. Never worry about manual updates or compatibility issues.</p>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">📊</div>
-                                <div class="feature-content">
-                                    <h3>Real-time Monitoring</h3>
-                                    <p>Monitor server status, resource usage, and logs in real-time through the intuitive web interface.</p>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">🌍</div>
-                                <div class="feature-content">
-                                    <h3>Network Accessibility</h3>
-                                    <p>Access your development servers from any device on the network for easy testing across multiple platforms.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Pricing Page -->
-            <div id="pricing-page" class="page-content hidden">
-                <section class="pricing">
-                    <div class="container">
-                        <div class="section-header">
-                            <h1>Pricing</h1>
-                            <p class="section-subtitle">
-                                Simple, transparent pricing for teams of all sizes
-                            </p>
-                        </div>
-
-                        <div class="billing-toggle">
-                            <span class="toggle-label">Monthly</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="pricing-page-toggle">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-label">Yearly <span class="savings-badge">Save 25%</span></span>
-                        </div>
-
-                        <div class="pricing-grid">
-                            <div class="pricing-card">
-                                <h3>Free</h3>
-                                <div class="price" id="free-price-page">$0</div>
-                                <p class="price-period">per month, no credit card required</p>
-                                <ul class="feature-list">
-                                    <li>3 simultaneous servers</li>
-                                    <li>PHP & static site support</li>
-                                    <li>Auto-detection technology</li>
-                                    <li>Basic web interface</li>
-                                    <li>Community support</li>
-                                </ul>
-                                <a href="/download" class="btn btn-outline btn-block">Download Free</a>
-                            </div>
-                            <div class="pricing-card featured">
-                                <div class="pricing-badge">Popular</div>
-                                <h3>Pro</h3>
-                                <div class="price" id="pro-price-page">$3</div>
-                                <p class="price-period" id="pro-period-page">per month</p>
-                                <p class="price-note" id="pro-note-page">$10 from the second month, billed monthly</p>
-                                <ul class="feature-list">
-                                    <li>Unlimited servers</li>
-                                    <li>All server types (Node.js, Flask, etc.)</li>
-                                    <li>Project templates & presets</li>
-                                    <li>Built-in file manager</li>
-                                    <li>Environment variables editor</li>
-                                    <li>Priority email support</li>
-                                    <li>Advanced security features</li>
-                                </ul>
-                                <a href="/signup" class="btn btn-primary btn-block">Start Free Trial</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Documentation Page -->
-            <div id="docs-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Documentation</h1>
-                            <p class="section-subtitle">
-                                Complete guides and API reference for Modern Server Administrator
-                            </p>
-                        </div>
-                        <div class="features-grid">
-                            <div class="feature">
-                                <div class="feature-icon">📖</div>
-                                <div class="feature-content">
-                                    <h3>Getting Started</h3>
-                                    <p>Learn how to install and configure Modern Server Administrator for your development environment.</p>
-                                    <a href="/docs/getting-started" class="btn btn-outline btn-sm mt-2">View Guide</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">⚙️</div>
-                                <div class="feature-content">
-                                    <h3>Configuration</h3>
-                                    <p>Detailed documentation on server configuration, environment variables, and advanced settings.</p>
-                                    <a href="/docs/configuration" class="btn btn-outline btn-sm mt-2">View Guide</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">🔧</div>
-                                <div class="feature-content">
-                                    <h3>API Reference</h3>
-                                    <p>Complete API documentation for integrating Modern Server Administrator with your development workflow.</p>
-                                    <a href="/docs/api" class="btn btn-outline btn-sm mt-2">View Reference</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">❓</div>
-                                <div class="feature-content">
-                                    <h3>FAQ</h3>
-                                    <p>Answers to frequently asked questions about installation, configuration, and troubleshooting.</p>
-                                    <a href="/docs/faq" class="btn btn-outline btn-sm mt-2">View FAQ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Support Page -->
-            <div id="support-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Support</h1>
-                            <p class="section-subtitle">
-                                Get help with Modern Server Administrator
-                            </p>
-                        </div>
-                        <div class="features-grid">
-                            <div class="feature">
-                                <div class="feature-icon">📚</div>
-                                <div class="feature-content">
-                                    <h3>Knowledge Base</h3>
-                                    <p>Browse our comprehensive knowledge base with articles, tutorials, and troubleshooting guides.</p>
-                                    <a href="/docs" class="btn btn-outline btn-sm mt-2">Browse Articles</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">💬</div>
-                                <div class="feature-content">
-                                    <h3>Community Forum</h3>
-                                    <p>Join our community of developers to share knowledge and get help from other users.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">Join Forum</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">📧</div>
-                                <div class="feature-content">
-                                    <h3>Email Support</h3>
-                                    <p>Contact our support team directly for personalized assistance with any issues.</p>
-                                    <a href="mailto:support@modernserveradmin.com" class="btn btn-outline btn-sm mt-2">Email Us</a>
-                                </div>
-                            </div>
-                            <div class="feature">
-                                <div class="feature-icon">🐛</div>
-                                <div class="feature-content">
-                                    <h3>Report a Bug</h3>
-                                    <p>Found a bug? Let us know so we can fix it and improve the software for everyone.</p>
-                                    <a href="#" class="btn btn-outline btn-sm mt-2">Report Issue</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Contact Page -->
-            <div id="contact-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Contact Us</h1>
-                            <p class="section-subtitle">
-                                Get in touch with our team
-                            </p>
-                        </div>
-                        <div class="auth-card">
-                            <form id="contact-form">
-                                <div class="form-group">
-                                    <label for="contact-name" class="form-label">Full Name</label>
-                                    <input type="text" id="contact-name" class="form-input" placeholder="Your name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact-email" class="form-label">Email Address</label>
-                                    <input type="email" id="contact-email" class="form-input" placeholder="your@email.com" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact-subject" class="form-label">Subject</label>
-                                    <input type="text" id="contact-subject" class="form-input" placeholder="How can we help?" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contact-message" class="form-label">Message</label>
-                                    <textarea id="contact-message" class="form-input" rows="5" placeholder="Tell us more about your inquiry..." required></textarea>
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Download Page -->
-            <div id="download-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Download</h1>
-                            <p class="section-subtitle">
-                                Get started with Modern Server Administrator
-                            </p>
-                        </div>
-                        <div class="auth-card">
-                            <div class="auth-header">
-                                <h2>Free Download</h2>
-                                <p>Start with our free version and upgrade anytime</p>
-                            </div>
-                            <div class="feature-list">
-                                <li>3 simultaneous servers</li>
-                                <li>PHP & static site support</li>
-                                <li>Auto-detection technology</li>
-                                <li>Basic web interface</li>
-                                <li>Community support</li>
-                            </div>
-                            <div class="form-actions">
-                                <!-- REPLACE THIS WITH YOUR ACTUAL DOWNLOAD LINK -->
-                                <a href="https://your-actual-download-link.com/server-admin.exe" class="btn btn-primary btn-block" id="windows-download">Download for Windows</a>
-                                <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for macOS (Coming Soon)</a>
-                                <a href="#" class="btn btn-outline btn-block mt-2 btn-disabled">Download for Linux (Coming Soon)</a>
-                            </div>
-                            <div class="auth-footer">
-                                <p>By downloading, you agree to our <a href="/terms">Terms of Service</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Login Page -->
-            <div id="login-page" class="page-content hidden">
-                <section class="auth-section">
-                    <div class="container auth-container">
-                        <div class="auth-card">
-                            <div class="auth-header">
-                                <div class="auth-logo">
-                                    <svg width="28" height="28" viewBox="0 0 64 64">
-                                        <rect width="64" height="64" rx="12" fill="#000000"/>
-                                        <path fill="#E6E6E6" d="M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z"/>
-                                    </svg>
-                                    Server Admin
-                                </div>
-                                <h2>Sign in to your account</h2>
-                                <p>Access your server management dashboard</p>
-                            </div>
-                            
-                            <form id="login-form">
-                                <div class="form-group">
-                                    <label for="login-email" class="form-label">Email address</label>
-                                    <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="login-password" class="form-label">Password</label>
-                                    <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-block" id="login-button">
-                                        <span class="button-text">Sign in</span>
-                                        <span class="spinner hidden"></span>
-                                    </button>
-                                </div>
-                            </form>
-
-                            <div class="auth-divider">
-                                <span>New to Server Admin?</span>
-                            </div>
-
-                            <div class="text-center">
-                                <a href="/signup" class="btn btn-outline btn-block">Create an account</a>
-                            </div>
-
-                            <div class="auth-footer">
-                                <p><a href="/forgot-password">Forgot your password?</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Signup Page -->
-            <div id="signup-page" class="page-content hidden">
-                <section class="auth-section">
-                    <div class="container auth-container">
-                        <div class="auth-card">
-                            <div class="auth-header">
-                                <div class="auth-logo">
-                                    <svg width="28" height="28" viewBox="0 0 64 64">
-                                        <rect width="64" height="64" rx="12" fill="#000000"/>
-                                        <path fill="#E6E6E6" d="M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z"/>
-                                    </svg>
-                                    Server Admin
-                                </div>
-                                <h2>Create your account</h2>
-                                <p>Start your free trial with full Pro features</p>
-                            </div>
-                            
-                            <form id="signup-form">
-                                <div class="form-group">
-                                    <label for="signup-name" class="form-label">Full name</label>
-                                    <input type="text" id="signup-name" class="form-input" placeholder="John Doe" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="signup-email" class="form-label">Email address</label>
-                                    <input type="email" id="signup-email" class="form-input" placeholder="you@example.com" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="signup-password" class="form-label">Password</label>
-                                    <input type="password" id="signup-password" class="form-input" placeholder="••••••••" minlength="8" required>
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-block" id="signup-button">
-                                        <span class="button-text">Create account</span>
-                                        <span class="spinner hidden"></span>
-                                    </button>
-                                </div>
-                            </form>
-
-                            <div class="auth-divider">
-                                <span>Already have an account?</span>
-                            </div>
-
-                            <div class="text-center">
-                                <a href="/login" class="btn btn-outline btn-block">Sign in to your account</a>
-                            </div>
-
-                            <div class="auth-footer">
-                                <p>By creating an account, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Account Page (After Login) -->
-            <div id="account-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Account</h1>
-                            <p class="section-subtitle">
-                                Manage your Server Admin account
-                            </p>
-                        </div>
-                        <div class="auth-card">
-                            <div class="auth-header">
-                                <div class="user-avatar" style="width: 64px; height: 64px; font-size: 1.5rem; margin: 0 auto 1rem;" id="account-avatar">U</div>
-                                <h2 id="account-name">Loading...</h2>
-                                <p id="account-email">Loading...</p>
-                            </div>
-                            
-                            <div class="feature-list" id="account-details">
-                                <li>Plan: <strong id="account-plan">Loading...</strong></li>
-                                <li>Status: <strong style="color: var(--success)" id="account-status">Loading...</strong></li>
-                                <li>Member since: <strong id="account-created">Loading...</strong></li>
-                            </div>
-
-                            <div class="form-actions">
-                                <!-- REPLACE THIS WITH YOUR ACTUAL PADDLE CHECKOUT LINK -->
-                                <a href="https://your-paddle-checkout-link.com" class="btn btn-primary btn-block">Upgrade to Pro</a>
-                                <a href="/download" class="btn btn-outline btn-block mt-2">Download Application</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Billing Page -->
-            <div id="billing-page" class="page-content hidden">
-                <section class="features">
-                    <div class="container container-narrow">
-                        <div class="section-header">
-                            <h1>Billing</h1>
-                            <p class="section-subtitle">
-                                Manage your subscription and payment methods
-                            </p>
-                        </div>
-                        <div class="auth-card">
-                            <div class="auth-header">
-                                <h2>Current Plan</h2>
-                                <p id="billing-plan">Pro Plan - $10/month</p>
-                            </div>
-                            
-                            <div class="feature-list" id="billing-details">
-                                <li>Billing cycle: <strong id="billing-cycle">Monthly</strong></li>
-                                <li>Next billing date: <strong id="next-billing">January 30, 2024</strong></li>
-                                <li>Payment method: <strong id="payment-method">Credit card ending in 4242</strong></li>
-                            </div>
-
-                            <div class="form-actions">
-                                <button class="btn btn-outline btn-block">Update Payment Method</button>
-                                <button class="btn btn-outline btn-block mt-2">Change Billing Cycle</button>
-                                <button class="btn btn-outline btn-block mt-2" style="color: var(--error); border-color: var(--error);">Cancel Subscription</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Legal Pages -->
-            <div id="terms-page" class="page-content hidden">
-                <section class="legal-section">
-                    <div class="container container-narrow">
-                        <div class="legal-header">
-                            <h1>Terms of Service</h1>
-                            <p class="text-lead">Last updated: January 15, 2024</p>
-                        </div>
-                        <div class="legal-content">
-                            <h2>1. Agreement to Terms</h2>
-                            <p>By accessing and using Modern Server Administrator ("the Software"), you accept and agree to be bound by the terms and provision of this agreement.</p>
-                            
-                            <h2>2. Use License</h2>
-                            <p>Permission is granted to temporarily download one copy of the Software for personal or commercial use. This is the grant of a license, not a transfer of title.</p>
-                            
-                            <h2>3. Subscription Terms</h2>
-                            <p>Professional licenses are subscription-based and will automatically renew unless canceled at least 24 hours before the end of the current billing period.</p>
-                            
-                            <h2>4. User Responsibilities</h2>
-                            <p>You are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer.</p>
-                            
-                            <h2>5. Refund Policy</h2>
-                            <p>Due to the digital nature of our software, we generally do not provide refunds for purchased licenses. However, we want you to be satisfied with your purchase.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="privacy-page" class="page-content hidden">
-                <section class="legal-section">
-                    <div class="container container-narrow">
-                        <div class="legal-header">
-                            <h1>Privacy Policy</h1>
-                            <p class="text-lead">Last updated: January 15, 2024</p>
-                        </div>
-                        <div class="legal-content">
-                            <h2>1. Information We Collect</h2>
-                            <p>We collect information you provide directly to us, such as when you create an account, subscribe to our services, or contact us for support.</p>
-                            
-                            <h2>2. How We Use Your Information</h2>
-                            <p>We use the information we collect to provide, maintain, and improve our services, to develop new ones, and to protect Modern Server Administrator and our users.</p>
-                            
-                            <h2>3. Information Sharing</h2>
-                            <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information except as described in this policy.</p>
-                            
-                            <h2>4. Data Security</h2>
-                            <p>We implement appropriate technical and organizational security measures designed to protect the security of any personal information we process.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div id="refund-page" class="page-content hidden">
-                <section class="legal-section">
-                    <div class="container container-narrow">
-                        <div class="legal-header">
-                            <h1>Refund Policy</h1>
-                            <p class="text-lead">Last updated: January 15, 2024</p>
-                        </div>
-                        <div class="legal-content">
-                            <h2>1. Digital Product Refunds</h2>
-                            <p>Due to the digital nature of our software, we generally do not provide refunds for purchased licenses. However, we want you to be satisfied with your purchase.</p>
-                            
-                            <h2>2. Subscription Cancellations</h2>
-                            <p>You may cancel your subscription at any time. Cancellation will take effect at the end of your current billing cycle.</p>
-                            
-                            <h2>3. Exceptional Circumstances</h2>
-                            <p>Refunds may be considered in exceptional circumstances at the discretion of Modern Server Administrator management.</p>
-                            
-                            <h2>4. Free Trial</h2>
-                            <p>We offer a free trial of our Professional features. No payment is required during the trial period, and you may cancel at any time before the trial ends.</p>
-                        </div>
-                    </div>
-                </section>
+            <h1 class="hero-title">
+                Professional Server Management
+                <br>Reimagined
+            </h1>
+            <p class="hero-subtitle">
+                Enterprise-grade local development environment with zero configuration. 
+                Serve PHP, Node.js, Flask, and static sites instantly with professional tooling.
+            </p>
+            <div class="hero-actions">
+                <a href="#download" class="btn-primary">
+                    <i class="fas fa-download"></i> Download Free
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
             </div>
         </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div>
-                        <div class="footer-logo">
-                            <svg width="20" height="20" viewBox="0 0 64 64">
-                                <rect width="64" height="64" rx="12" fill="#000000"/>
-                                <path fill="#E6E6E6" d="M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z"/>
-                            </svg>
-                            Server Admin
-                        </div>
-                        <p class="footer-description">
-                            Professional server management for modern development teams.
-                        </p>
-                    </div>
-                    <div>
-                        <h4>Product</h4>
-                        <div class="footer-links">
-                            <a href="/features">Features</a>
-                            <a href="/pricing">Pricing</a>
-                            <a href="/download">Download</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Resources</h4>
-                        <div class="footer-links">
-                            <a href="/docs">Documentation</a>
-                            <a href="/support">Support</a>
-                            <a href="/contact">Contact</a>
-                        </div>
-                    </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Enterprise Features</h2>
+        <p class="section-subtitle">Professional tooling designed for modern development workflows</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
                 </div>
-                <div class="footer-bottom">
-                    <div class="copyright">
-                        <p>&copy; 2024 Modern Server Administrator. All rights reserved.</p>
-                    </div>
-                    <div class="footer-legal">
-                        <a href="/terms">Terms</a>
-                        <a href="/privacy">Privacy</a>
-                        <a href="/refund">Refund Policy</a>
-                    </div>
-                </div>
+                <h3 class="feature-title">Zero Configuration</h3>
+                <p class="feature-description">
+                    Drop your project folders and start coding immediately. Auto-detects PHP, Node.js, 
+                    Flask, and static sites with intelligent project analysis.
+                </p>
             </div>
-        </footer>
-    </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3 class="feature-title">Public URL Sharing</h3>
+                <p class="feature-description">
+                    Instantly create secure public tunnels for your local servers. Share with teammates, 
+                    clients, or test on mobile devices with one click.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+                <h3 class="feature-title">Professional Dashboard</h3>
+                <p class="feature-description">
+                    Beautiful, intuitive web interface for managing all your local projects. Real-time 
+                    logs, server status, and comprehensive analytics.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync"></i>
+                </div>
+                <h3 class="feature-title">Hot Reload & Live Sync</h3>
+                <p class="feature-description">
+                    Automatic server restarts on file changes. Real-time collaboration features for 
+                    team development with synchronized changes.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Enterprise Security</h3>
+                <p class="feature-description">
+                    Military-grade encryption for all local data. Secure tunneling with SSL encryption 
+                    and comprehensive access controls.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h3 class="feature-title">Extensible Architecture</h3>
+                <p class="feature-description">
+                    Plugin system for custom extensions. API-driven architecture for integration with 
+                    your existing development tools.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <h2 class="section-title">Download Free</h2>
+        <p class="section-subtitle">Completely free during beta testing. No restrictions, no payments.</p>
+        
+        <div class="download-grid">
+            <div class="download-card">
+                <i class="fab fa-windows platform-icon windows"></i>
+                <h3 class="download-title">Windows</h3>
+                <p class="download-description">Portable executable, no installation required</p>
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-download"></i> Download .exe
+                </a>
+            </div>
+            
+            <div class="download-card">
+                <i class="fab fa-apple platform-icon mac"></i>
+                <h3 class="download-title">macOS</h3>
+                <p class="download-description">Native application with full system integration</p>
+                <button class="btn-secondary" disabled>
+                    <i class="fas fa-clock"></i> Coming Soon
+                </button>
+            </div>
+            
+            <div class="download-card">
+                <i class="fab fa-linux platform-icon linux"></i>
+                <h3 class="download-title">Linux</h3>
+                <p class="download-description">Universal package with dependency management</p>
+                <a href="#" class="btn-primary">
+                    <i class="fas fa-download"></i> Download .deb
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Section -->
+    <section class="status" id="status">
+        <h2 class="section-title">Project Status</h2>
+        <p class="section-subtitle">Transparent development with community-driven improvements</p>
+        
+        <div class="status-grid">
+            <div class="status-card">
+                <span class="status-badge status-working">STABLE & PRODUCTION READY</span>
+                <h3>Core Platform</h3>
+                <ul class="status-list">
+                    <li>✓ PHP Server Auto-detection</li>
+                    <li>✓ Node.js Project Management</li>
+                    <li>✓ Flask Application Support</li>
+                    <li>✓ Static File Server</li>
+                    <li>✓ Professional Web Interface</li>
+                    <li>✓ Real-time Server Logs</li>
+                </ul>
+            </div>
+            
+            <div class="status-card">
+                <span class="status-badge status-beta">BETA TESTING</span>
+                <h3>Advanced Features</h3>
+                <ul class="status-list">
+                    <li>🔧 Public URL Tunneling</li>
+                    <li>🔧 Hot Reload System</li>
+                    <li>🔧 Multi-project Management</li>
+                    <li>🔧 Theme System</li>
+                    <li>⚠️ Streaming Responses (206)</li>
+                    <li>⚠️ Large File Upload Handling</li>
+                </ul>
+            </div>
+            
+            <div class="status-card">
+                <span class="status-badge status-future">ROADMAP 2024</span>
+                <h3>Future Development</h3>
+                <ul class="status-list">
+                    <li>📅 One-click Cloud Deployment</li>
+                    <li>📅 Team Collaboration</li>
+                    <li>📅 Database Management</li>
+                    <li>📅 Plugin Ecosystem</li>
+                    <li>📅 Mobile Companion App</li>
+                    <li>📅 Enterprise Features</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                &copy; 2024 Modern Server Administrator. Built with passion for the developer community.
+            </p>
+            <p class="footer-text">
+                Free • Open Source • No Tracking • Professional Grade
+            </p>
+            <p class="footer-text" style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Contact:</strong> your-email@example.com | 
+                <strong>GitHub:</strong> your-username/modern-server-admin
+            </p>
+        </div>
+    </footer>
 
     <script>
-        // =============================================
-        // SUPABASE CONFIGURATION - USING YOUR ACTUAL KEYS
-        // =============================================
-        const SUPABASE_URL = 'https://exnuhfvdozppigfhcsxy.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4bnVoZnZkb3pwcGlnZmhjc3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMjkzODUsImV4cCI6MjA3NzYwNTM4NX0.EiaGQVr9B4EUqJrsdIC9WuZ_WkDoMoV-rB78j-rBEOM';
-        
-        // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // =============================================
-        // APPLICATION STATE
-        // =============================================
-        let currentUser = null;
-        let userProfile = null;
-
-        // =============================================
-        // ROUTING SYSTEM
-        // =============================================
-        const routes = {
-            '/': 'home-page',
-            '/features': 'features-page',
-            '/pricing': 'pricing-page',
-            '/docs': 'docs-page',
-            '/support': 'support-page',
-            '/contact': 'contact-page',
-            '/download': 'download-page',
-            '/login': 'login-page',
-            '/signup': 'signup-page',
-            '/account': 'account-page',
-            '/billing': 'billing-page',
-            '/terms': 'terms-page',
-            '/privacy': 'privacy-page',
-            '/refund': 'refund-page'
-        };
-
-        // =============================================
-        // UTILITY FUNCTIONS
-        // =============================================
-        function showAlert(message, type = 'success') {
-            const alertContainer = document.getElementById('alert-container');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.textContent = message;
-            alertContainer.appendChild(alert);
-            
-            setTimeout(() => {
-                alert.remove();
-            }, 5000);
-        }
-
-        function setLoading(button, isLoading) {
-            const buttonText = button.querySelector('.button-text');
-            const spinner = button.querySelector('.spinner');
-            
-            if (isLoading) {
-                button.disabled = true;
-                buttonText.textContent = 'Loading...';
-                spinner.classList.remove('hidden');
-                button.classList.add('loading');
-            } else {
-                button.disabled = false;
-                buttonText.textContent = button === document.getElementById('login-button') ? 'Sign in' : 'Create account';
-                spinner.classList.add('hidden');
-                button.classList.remove('loading');
-            }
-        }
-
-        // =============================================
-        // AUTHENTICATION FUNCTIONS - FIXED VERSION
-        // =============================================
-        async function checkAuthSession() {
-            try {
-                console.log('Checking auth session...');
-                const { data: { session }, error } = await supabase.auth.getSession();
-                
-                if (error) {
-                    console.error('Session error:', error);
-                    throw error;
-                }
-                
-                console.log('Session found:', session);
-                if (session) {
-                    currentUser = session.user;
-                    console.log('User authenticated:', currentUser.email);
-                    await fetchUserProfile();
-                    updateAuthState();
-                } else {
-                    console.log('No session found');
-                    currentUser = null;
-                    userProfile = null;
-                    updateAuthState();
-                }
-            } catch (error) {
-                console.error('Error checking auth session:', error);
-                currentUser = null;
-                userProfile = null;
-                updateAuthState();
-            }
-        }
-
-        async function fetchUserProfile() {
-            if (!currentUser) {
-                console.log('No current user to fetch profile for');
-                return;
-            }
-            
-            try {
-                console.log('Fetching user profile for:', currentUser.id);
-                const { data, error } = await supabase
-                    .from('users')
-                    .select('*')
-                    .eq('id', currentUser.id)
-                    .single();
-                
-                if (error) {
-                    console.error('Error fetching user profile:', error);
-                    // Create user profile if it doesn't exist
-                    await createUserProfile();
-                    return;
-                }
-                
-                if (data) {
-                    console.log('User profile found:', data);
-                    userProfile = data;
-                } else {
-                    console.log('No user profile found, creating one...');
-                    await createUserProfile();
-                }
-            } catch (error) {
-                console.error('Error in fetchUserProfile:', error);
-                await createUserProfile();
-            }
-        }
-
-        async function createUserProfile() {
-            if (!currentUser) return;
-            
-            try {
-                console.log('Creating user profile for:', currentUser.id);
-                const { data, error } = await supabase
-                    .from('users')
-                    .insert([
-                        {
-                            id: currentUser.id,
-                            email: currentUser.email,
-                            full_name: currentUser.user_metadata?.full_name || currentUser.email.split('@')[0],
-                            plan: 'free',
-                            created_at: new Date().toISOString()
-                        }
-                    ])
-                    .select()
-                    .single();
-                
-                if (error) {
-                    console.error('Error creating user profile:', error);
-                    // If insert fails, try upsert
-                    await upsertUserProfile();
-                    return;
-                }
-                
-                if (data) {
-                    console.log('User profile created:', data);
-                    userProfile = data;
-                }
-            } catch (error) {
-                console.error('Error in createUserProfile:', error);
-            }
-        }
-
-        async function upsertUserProfile() {
-            if (!currentUser) return;
-            
-            try {
-                const { data, error } = await supabase
-                    .from('users')
-                    .upsert({
-                        id: currentUser.id,
-                        email: currentUser.email,
-                        full_name: currentUser.user_metadata?.full_name || currentUser.email.split('@')[0],
-                        plan: 'free',
-                        created_at: new Date().toISOString()
-                    })
-                    .select()
-                    .single();
-                
-                if (error) throw error;
-                
-                userProfile = data;
-                console.log('User profile upserted:', data);
-            } catch (error) {
-                console.error('Error in upsertUserProfile:', error);
-            }
-        }
-
-        async function handleLogin(email, password) {
-            try {
-                console.log('Attempting login for:', email);
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email,
-                    password
-                });
-                
-                if (error) {
-                    console.error('Login error:', error);
-                    throw error;
-                }
-                
-                console.log('Login successful:', data.user.email);
-                currentUser = data.user;
-                await fetchUserProfile();
-                updateAuthState();
-                showAlert('Successfully signed in!', 'success');
-                navigateTo('/account');
-                
-                return { success: true };
-            } catch (error) {
-                console.error('Login failed:', error);
-                showAlert(error.message, 'error');
-                return { success: false, error: error.message };
-            }
-        }
-
-        async function handleSignup(fullName, email, password) {
-            try {
-                console.log('Attempting signup for:', email);
-                const { data, error } = await supabase.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            full_name: fullName
-                        }
-                    }
-                });
-                
-                if (error) {
-                    console.error('Signup error:', error);
-                    throw error;
-                }
-                
-                console.log('Signup successful:', data.user?.email);
-                if (data.user) {
-                    currentUser = data.user;
-                    // Profile will be created automatically via fetchUserProfile
-                    await fetchUserProfile();
-                    updateAuthState();
-                    showAlert('Account created successfully! Please check your email for verification.', 'success');
-                    navigateTo('/account');
-                }
-                
-                return { success: true };
-            } catch (error) {
-                console.error('Signup failed:', error);
-                showAlert(error.message, 'error');
-                return { success: false, error: error.message };
-            }
-        }
-
-        async function handleLogout() {
-            try {
-                console.log('Attempting logout');
-                const { error } = await supabase.auth.signOut();
-                if (error) throw error;
-                
-                currentUser = null;
-                userProfile = null;
-                updateAuthState();
-                showAlert('Successfully signed out', 'success');
-                navigateTo('/');
-            } catch (error) {
-                console.error('Logout error:', error);
-                showAlert('Error signing out', 'error');
-            }
-        }
-
-        function updateAuthState() {
-            const authButtons = document.getElementById('auth-buttons');
-            const userMenuContainer = document.getElementById('user-menu-container');
-            const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
-            const mobileUserMenu = document.getElementById('mobile-user-menu');
-            const userAvatar = document.getElementById('user-avatar');
-            
-            console.log('Updating auth state, user exists:', !!currentUser);
-            
-            if (currentUser) {
-                // User is logged in
-                if (authButtons) authButtons.classList.add('hidden');
-                if (userMenuContainer) userMenuContainer.classList.remove('hidden');
-                if (mobileAuthButtons) mobileAuthButtons.classList.add('hidden');
-                if (mobileUserMenu) mobileUserMenu.classList.remove('hidden');
-                
-                // Update user avatar
-                if (userAvatar) {
-                    const name = userProfile?.full_name || currentUser.email || 'U';
-                    userAvatar.textContent = name.charAt(0).toUpperCase();
-                    console.log('Updated user avatar with:', name.charAt(0).toUpperCase());
-                }
-            } else {
-                // User is not logged in
-                if (authButtons) authButtons.classList.remove('hidden');
-                if (userMenuContainer) userMenuContainer.classList.add('hidden');
-                if (mobileAuthButtons) mobileAuthButtons.classList.remove('hidden');
-                if (mobileUserMenu) mobileUserMenu.classList.add('hidden');
-            }
-        }
-
-        function updateAccountPage() {
-            console.log('Updating account page with user data:', userProfile);
-            
-            if (currentUser && userProfile) {
-                document.getElementById('account-name').textContent = userProfile.full_name || currentUser.email;
-                document.getElementById('account-email').textContent = currentUser.email;
-                document.getElementById('account-plan').textContent = userProfile.plan === 'pro' ? 'Pro' : 'Free';
-                document.getElementById('account-status').textContent = 'Active';
-                
-                const createdDate = userProfile.created_at ? new Date(userProfile.created_at) : new Date();
-                document.getElementById('account-created').textContent = createdDate.toLocaleDateString();
-                
-                const accountAvatar = document.getElementById('account-avatar');
-                if (accountAvatar) {
-                    const name = userProfile.full_name || currentUser.email;
-                    accountAvatar.textContent = name.charAt(0).toUpperCase();
-                }
-                
-                console.log('Account page updated successfully');
-            } else if (currentUser) {
-                // User is logged in but profile not loaded yet
-                document.getElementById('account-name').textContent = currentUser.email;
-                document.getElementById('account-email').textContent = currentUser.email;
-                document.getElementById('account-plan').textContent = 'Loading...';
-                document.getElementById('account-status').textContent = 'Loading...';
-                document.getElementById('account-created').textContent = 'Loading...';
-                
-                console.log('Account page updated with basic user info');
-            } else {
-                console.log('No user data available for account page');
-            }
-        }
-
-        // =============================================
-        // DOM ELEMENT REFERENCES
-        // =============================================
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const userAvatar = document.getElementById('user-avatar');
-        const userMenu = document.getElementById('user-menu');
-
-        // =============================================
-        // EVENT LISTENERS
-        // =============================================
-        document.addEventListener('DOMContentLoaded', async () => {
-            console.log('DOM loaded, initializing...');
-            
-            // Initialize authentication
-            await checkAuthSession();
-            
-            // Set up initial routing
-            const path = window.location.pathname;
-            console.log('Initial path:', path);
-            
-            if (path === '/' || path === '' || path === '/index.html') {
-                navigateTo('/');
-            } else {
-                navigateTo(path);
-            }
-            
-            // Add logout handlers
-            document.getElementById('logout-button').addEventListener('click', (e) => {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                handleLogout();
-            });
-            
-            document.getElementById('mobile-logout-button').addEventListener('click', (e) => {
-                e.preventDefault();
-                handleLogout();
-            });
-            
-            console.log('Initialization complete');
-        });
-
-        // Mobile menu functionality
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.mobile-menu') && !e.target.closest('.mobile-menu-btn')) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // User menu functionality
-        if (userAvatar) {
-            userAvatar.addEventListener('click', (e) => {
-                e.stopPropagation();
-                userMenu.classList.toggle('active');
-            });
-        }
-
-        document.addEventListener('click', () => {
-            if (userMenu) userMenu.classList.remove('active');
-        });
-
-        // Navigation system
-        function navigateTo(path) {
-            console.log('Navigating to:', path);
-            
-            // Hide all pages
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.add('hidden');
-            });
-
-            // Close mobile menu
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-
-            // Show target page
-            const targetPage = routes[path];
-            if (targetPage) {
-                const pageElement = document.getElementById(targetPage);
-                if (pageElement) {
-                    pageElement.classList.remove('hidden');
-                    pageElement.classList.add('page-transition');
-                    
-                    // Update browser history
-                    window.history.pushState({ path }, '', path);
-                    
-                    // Scroll to top
-                    window.scrollTo(0, 0);
-                    
-                    // Update account page if needed
-                    if (path === '/account') {
-                        console.log('Account page accessed, updating...');
-                        updateAccountPage();
-                    }
-                } else {
-                    console.log('Target page not found, redirecting to home');
-                    navigateTo('/');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.backdropFilter = 'blur(20px)';
             } else {
-                console.log('Route not found, redirecting to home');
-                navigateTo('/');
-            }
-        }
-
-        window.addEventListener('popstate', (event) => {
-            const path = event.state?.path || window.location.pathname;
-            console.log('Popstate navigation to:', path);
-            navigateTo(path);
-        });
-
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('a[href^="/"]')) {
-                e.preventDefault();
-                const path = e.target.getAttribute('href');
-                console.log('Internal navigation to:', path);
-                navigateTo(path);
-            }
-            
-            if (e.target.matches('.btn-outline')) {
-                const parentLink = e.target.closest('a');
-                if (parentLink && parentLink.getAttribute('href')) {
-                    e.preventDefault();
-                    const path = parentLink.getAttribute('href');
-                    console.log('Button navigation to:', path);
-                    navigateTo(path);
-                }
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
             }
         });
 
-        // Login form
-        const loginForm = document.getElementById('login-form');
-        if (loginForm) {
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-                const loginButton = document.getElementById('login-button');
-                
-                console.log('Login form submitted for:', email);
-                setLoading(loginButton, true);
-                await handleLogin(email, password);
-                setLoading(loginButton, false);
-            });
-        }
-
-        // Signup form
-        const signupForm = document.getElementById('signup-form');
-        if (signupForm) {
-            signupForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const name = document.getElementById('signup-name').value;
-                const email = document.getElementById('signup-email').value;
-                const password = document.getElementById('signup-password').value;
-                const signupButton = document.getElementById('signup-button');
-                
-                console.log('Signup form submitted for:', email);
-                setLoading(signupButton, true);
-                await handleSignup(name, email, password);
-                setLoading(signupButton, false);
-            });
-        }
-
-        // Contact form
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                showAlert('Thank you for your message! We will get back to you soon.', 'success');
-                navigateTo('/');
-            });
-        }
-
-        // Download link - REPLACE WITH YOUR ACTUAL DOWNLOAD LINK
-        const windowsDownload = document.getElementById('windows-download');
-        if (windowsDownload) {
-            windowsDownload.addEventListener('click', (e) => {
-                if (!currentUser) {
-                    e.preventDefault();
-                    showAlert('Please sign up or log in to download', 'error');
-                    navigateTo('/signup');
-                }
-                // If user is logged in, the actual href will be followed
-            });
-        }
-
-        // Billing toggle functionality
-        const billingToggle = document.getElementById('billing-toggle');
-        const pricingToggle = document.getElementById('pricing-page-toggle');
-        
-        function updatePricing(isYearly) {
-            const freePriceElements = document.querySelectorAll('#free-price, #free-price-page');
-            const proPriceElements = document.querySelectorAll('#pro-price, #pro-price-page');
-            const proPeriodElements = document.querySelectorAll('#pro-period, #pro-period-page');
-            const proNoteElements = document.querySelectorAll('#pro-note, #pro-note-page');
-            
-            if (isYearly) {
-                freePriceElements.forEach(el => el.textContent = '$0');
-                proPriceElements.forEach(el => el.textContent = '$90');
-                proPeriodElements.forEach(el => el.textContent = 'per year');
-                proNoteElements.forEach(el => el.textContent = 'Billed annually, save 25%');
-            } else {
-                freePriceElements.forEach(el => el.textContent = '$0');
-                proPriceElements.forEach(el => el.textContent = '$3');
-                proPeriodElements.forEach(el => el.textContent = 'per month');
-                proNoteElements.forEach(el => el.textContent = '$10 from the second month, billed monthly');
-            }
-        }
-        
-        if (billingToggle) {
-            billingToggle.addEventListener('change', (e) => {
-                updatePricing(e.target.checked);
-            });
-        }
-        
-        if (pricingToggle) {
-            pricingToggle.addEventListener('change', (e) => {
-                updatePricing(e.target.checked);
-            });
-        }
-
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Real-time auth state listener
-        supabase.auth.onAuthStateChange(async (event, session) => {
-            console.log('Auth state changed:', event, session);
-            
-            if (event === 'SIGNED_IN') {
-                currentUser = session.user;
-                console.log('User signed in:', currentUser.email);
-                await fetchUserProfile();
-                updateAuthState();
-            } else if (event === 'SIGNED_OUT') {
-                currentUser = null;
-                userProfile = null;
-                console.log('User signed out');
-                updateAuthState();
-            } else if (event === 'USER_UPDATED') {
-                console.log('User updated');
-                await fetchUserProfile();
-                updateAuthState();
-            }
-        });
+        console.log('Modern Server Administrator - Enterprise Beta');
+        console.log('Thank you for testing our professional development platform!');
     </script>
 </body>
 </html>
