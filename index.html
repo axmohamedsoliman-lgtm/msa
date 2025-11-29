@@ -459,7 +459,7 @@
             color: #8b949e80;
         }
 
-        /* Video Modal */
+        /* Ultra Professional Video Modal */
         .modal {
             display: none;
             position: fixed;
@@ -467,52 +467,120 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            backdrop-filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal.active {
+            opacity: 1;
         }
 
         .modal-content {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 1000px;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 95%;
+            max-width: 1400px;
             background: var(--bg-primary);
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid var(--border-primary);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 0 200px rgba(31, 111, 235, 0.1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal.active .modal-content {
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .modal-header {
-            padding: 1.5rem 2rem;
-            background: var(--bg-secondary);
+            padding: 2rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             border-bottom: 1px solid var(--border-primary);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
         }
 
         .modal-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .close-modal {
-            background: none;
-            border: none;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            padding: 0.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .close-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
 
         .close-modal:hover {
-            color: var(--text-primary);
+            color: white;
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(31, 111, 235, 0.3);
+        }
+
+        .close-modal:hover::before {
+            left: 0;
         }
 
         .video-container {
@@ -529,6 +597,90 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(31, 111, 235, 0.1) 0%, 
+                rgba(137, 87, 229, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2.5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-btn:hover {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+        }
+
+        /* Loading Animation */
+        .modal-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border-primary);
+            border-top: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Footer */
@@ -576,12 +728,24 @@
             }
 
             .modal-content {
-                width: 95%;
+                width: 98%;
                 margin: 1rem;
+                border-radius: 16px;
             }
 
             .modal-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+
+            .modal-footer {
                 padding: 1rem 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .video-controls {
+                justify-content: center;
             }
         }
     </style>
@@ -801,18 +965,46 @@
         </div>
     </footer>
 
-    <!-- Video Modal -->
+    <!-- Ultra Professional Video Modal -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Modern Server Administrator - Product Demo</h3>
-                <button class="close-modal" id="closeModal">&times;</button>
+                <h3 class="modal-title">
+                    <i class="fas fa-play-circle"></i>
+                    Modern Server Administrator - Enterprise Demo
+                </h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+            
             <div class="video-container">
-                <video controls id="demoVideo">
+                <div class="modal-loading" id="modalLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading Enterprise Demo...</p>
+                </div>
+                <video controls id="demoVideo" style="display: none;">
                     <source src="/video/video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="video-overlay">
+                    <!-- Optional: Add play/pause controls overlay -->
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="video-info">
+                    <i class="fas fa-info-circle"></i>
+                    Enterprise Beta Preview • Modern Server Administrator
+                </div>
+                <div class="video-controls">
+                    <button class="control-btn" id="restartVideo">
+                        <i class="fas fa-redo"></i> Restart
+                    </button>
+                    <button class="control-btn" id="toggleFullscreen">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -844,39 +1036,88 @@
             }
         });
 
-        // Video Modal functionality
+        // Ultra Professional Video Modal functionality
         const watchDemoBtn = document.getElementById('watchDemoBtn');
         const videoModal = document.getElementById('videoModal');
         const closeModal = document.getElementById('closeModal');
         const demoVideo = document.getElementById('demoVideo');
+        const modalLoading = document.getElementById('modalLoading');
+        const restartVideo = document.getElementById('restartVideo');
+        const toggleFullscreen = document.getElementById('toggleFullscreen');
 
+        // Open modal with smooth animation
         watchDemoBtn.addEventListener('click', () => {
             videoModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
+            
+            // Trigger animation
+            setTimeout(() => {
+                videoModal.classList.add('active');
+            }, 10);
+            
+            // Show loading state
+            modalLoading.style.display = 'flex';
+            demoVideo.style.display = 'none';
+            
+            // Load video
+            demoVideo.load();
+            
+            // When video can play, hide loading
+            demoVideo.addEventListener('canplay', () => {
+                setTimeout(() => {
+                    modalLoading.style.display = 'none';
+                    demoVideo.style.display = 'block';
+                    demoVideo.play().catch(e => console.log('Autoplay prevented:', e));
+                }, 500);
+            });
         });
 
-        closeModal.addEventListener('click', () => {
-            videoModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-            demoVideo.pause(); // Pause video when modal closes
-        });
+        // Close modal with smooth animation
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            setTimeout(() => {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                demoVideo.pause();
+            }, 400);
+        }
+
+        closeModal.addEventListener('click', closeVideoModal);
 
         // Close modal when clicking outside the content
         videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal) {
-                videoModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                demoVideo.pause();
+                closeVideoModal();
             }
         });
 
         // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoModal.style.display === 'block') {
-                videoModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                demoVideo.pause();
+                closeVideoModal();
             }
+        });
+
+        // Restart video functionality
+        restartVideo.addEventListener('click', () => {
+            demoVideo.currentTime = 0;
+            demoVideo.play().catch(e => console.log('Play prevented:', e));
+        });
+
+        // Toggle fullscreen functionality
+        toggleFullscreen.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                videoModal.requestFullscreen?.().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen?.();
+            }
+        });
+
+        // Add professional touch: close modal when video ends
+        demoVideo.addEventListener('ended', () => {
+            setTimeout(closeVideoModal, 2000);
         });
 
         console.log('Modern Server Administrator - Enterprise Beta');
