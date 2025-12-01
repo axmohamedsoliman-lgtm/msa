@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Server Administrator - Enterprise-Grade Local Development</title>
+    <title>Modern Server Administrator - Local Development Environment</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
     %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E
       %3Crect width='64' height='64' rx='12' fill='%23000000'/%3E
@@ -744,7 +744,7 @@
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#download" class="nav-link">Download</a>
                 <a href="#status" class="nav-link">Status</a>
-                <a href="#download" class="cta-button">Get Started Free</a>
+                <a href="#download" class="cta-button">Download</a>
             </div>
         </div>
     </nav>
@@ -753,21 +753,22 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-badge">
-                <i></i>ENTERPRISE BETA
+                <i></i>BETA • ACTIVE DEVELOPMENT
             </div>
             <h1 class="hero-title">
-                modern server administrator
+                Modern Server Administrator
             </h1>
             <p class="hero-subtitle">
-                Professional local development environment with zero configuration. 
-                Serve PHP, Node.js, Flask, and static sites instantly with enterprise-grade tooling.
+                A practical local development environment that just works. 
+                Zero configuration setup for PHP, Node.js, Flask, and static sites. 
+                Currently in beta with a growing feature set.
             </p>
             <div class="hero-actions">
-                <a href="https://download.visualstudio.microsoft.com/download/pr/2c93f2c7-2d50-4a3e-b5d6-3e8b4e5e7b1c/90MB/modernserveradministrator.zip" class="btn-primary">
-                    <i class="fas fa-download"></i> Download Windows (90 MB)
+                <a href="#download" class="btn-primary">
+                    <i class="fas fa-download"></i> Download
                 </a>
                 <button class="btn-secondary" id="watchDemoBtn">
-                    <i class="fas fa-play-circle"></i> Watch Enterprise Demo
+                    <i class="fas fa-play-circle"></i> Watch Demo
                 </button>
             </div>
         </div>
@@ -775,8 +776,8 @@
 
     <!-- Features Section - REORDERED with available features first -->
     <section class="features" id="features">
-        <h2 class="section-title">Enterprise Features</h2>
-        <p class="section-subtitle">Professional tooling designed for modern development workflows</p>
+        <h2 class="section-title">What It Does</h2>
+        <p class="section-subtitle">Current features and what's coming next</p>
         
         <div class="features-grid">
             <!-- Available Features First -->
@@ -785,11 +786,11 @@
                     <i class="fas fa-bolt"></i>
                 </div>
                 <h3 class="feature-title">Zero Configuration 
-                    <span class="feature-badge badge-available">✅ Available</span>
+                    <span class="feature-badge badge-available">Available Now</span>
                 </h3>
                 <p class="feature-description">
                     Drop your project folders and start coding immediately. Auto-detects PHP, Node.js, 
-                    Flask, and static sites with intelligent project analysis.
+                    Flask, and static sites with intelligent project analysis. Just works.
                 </p>
             </div>
             
@@ -797,12 +798,12 @@
                 <div class="feature-icon">
                     <i class="fas fa-desktop"></i>
                 </div>
-                <h3 class="feature-title">Professional Dashboard
-                    <span class="feature-badge badge-available">✅ Available</span>
+                <h3 class="feature-title">Web Dashboard
+                    <span class="feature-badge badge-available">Available Now</span>
                 </h3>
                 <p class="feature-description">
-                    Beautiful, intuitive web interface for managing all your local projects. Real-time 
-                    logs, server status, and comprehensive analytics.
+                    Clean web interface for managing your local projects. Real-time 
+                    logs, server status, and basic monitoring. No complexity.
                 </p>
             </div>
             
@@ -810,12 +811,12 @@
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3 class="feature-title">Enterprise Security
-                    <span class="feature-badge badge-available">✅ Available</span>
+                <h3 class="feature-title">Local Security
+                    <span class="feature-badge badge-available">Available Now</span>
                 </h3>
                 <p class="feature-description">
-                    Military-grade encryption for all local data. Secure tunneling with SSL encryption 
-                    and comprehensive access controls.
+                    All data stays on your machine. No cloud dependencies. 
+                    Works offline and respects your privacy.
                 </p>
             </div>
             
@@ -825,11 +826,11 @@
                     <i class="fas fa-globe"></i>
                 </div>
                 <h3 class="feature-title">Public URL Sharing
-                    <span class="feature-badge badge-beta">🔧 Beta Testing</span>
+                    <span class="feature-badge badge-beta">In Beta Testing</span>
                 </h3>
                 <p class="feature-description">
-                    Instantly create secure public tunnels for your local servers. Share with teammates, 
-                    clients, or test on mobile devices with one click.
+                    Create secure tunnels to share your local servers. Useful for 
+                    testing on mobile devices or showing work to clients.
                 </p>
             </div>
             
@@ -837,12 +838,12 @@
                 <div class="feature-icon">
                     <i class="fas fa-sync"></i>
                 </div>
-                <h3 class="feature-title">Hot Reload & Live Sync
-                    <span class="feature-badge badge-beta">🔧 Beta Testing</span>
+                <h3 class="feature-title">Hot Reload
+                    <span class="feature-badge badge-beta">In Beta Testing</span>
                 </h3>
                 <p class="feature-description">
-                    Automatic server restarts on file changes. Real-time collaboration features for 
-                    team development with synchronized changes.
+                    Automatic server restarts when files change. Saves time during 
+                    development. Currently being refined.
                 </p>
             </div>
             
@@ -850,49 +851,62 @@
                 <div class="feature-icon">
                     <i class="fas fa-plug"></i>
                 </div>
-                <h3 class="feature-title">Extensible Architecture
-                    <span class="feature-badge badge-future">📅 Q2 2024</span>
+                <h3 class="feature-title">Extensibility
+                    <span class="feature-badge badge-future">Planned</span>
                 </h3>
                 <p class="feature-description">
-                    Plugin system for custom extensions. API-driven architecture for integration with 
-                    your existing development tools.
+                    Plugin system for custom extensions. We're building this based on 
+                    community feedback and needs.
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Download Section with Professional Installation -->
-    <section class="download" id="download">
-        <h2 class="section-title">Professional Installation</h2>
-        <p class="section-subtitle">Secure 90MB portable executable - no installation required</p>
+        <section class="download" id="download">
+        <h2 class="section-title">Get Started</h2>
+        <p class="section-subtitle">Simple setup. Currently Windows only, with more platforms coming.</p>
         
         <div class="download-grid">
             <div class="download-card">
                 <i class="fab fa-windows platform-icon windows"></i>
-                <h3 class="download-title">Windows Portable</h3>
-                <p class="download-description">90MB executable • No installation • Extract and run</p>
-                <a href="https://download.visualstudio.microsoft.com/download/pr/2c93f2c7-2d50-4a3e-b5d6-3e8b4e5e7b1c/90MB/modernserveradministrator.zip" class="btn-primary">
-                    <i class="fas fa-download"></i> Download Portable .zip
+                <h3 class="download-title">Windows Setup</h3>
+                <p class="download-description">90MB installer • Takes 1 minute • No dependencies</p>
+                <a href="https://github.com/your-username/modern-server-admin/releases/latest/download/modernserveradministrator-setup.exe" 
+                   class="btn-primary" 
+                   style="white-space: nowrap; padding: 12px 20px; font-size: 0.95rem;">
+                    <i class="fas fa-download"></i> Download Setup.exe
                 </a>
                 
                 <div class="download-info">
-                    <h4><i class="fas fa-shield-alt"></i> Security Verified</h4>
+                    <h4><i class="fas fa-info-circle"></i> Installation Notes</h4>
                     <ul>
-                        <li>Digitally signed executable</li>
-                        <li>No dependencies required</li>
-                        <li>Works behind corporate firewalls</li>
-                        <li>Zero telemetry or tracking</li>
+                        <li>Windows 10/11 (64-bit)</li>
+                        <li>Standard installer - just next, next, finish</li>
+                        <li>No admin rights required for basic use</li>
+                        <li>Automatic updates in future versions</li>
+                        <li>Portable version available for advanced users</li>
                     </ul>
                 </div>
-            </div>
+            </div>            
+            
+            
             
             <div class="download-card">
                 <i class="fab fa-apple platform-icon mac"></i>
                 <h3 class="download-title">macOS</h3>
-                <p class="download-description">Native application with full system integration</p>
+                <p class="download-description">Native DMG package with system integration</p>
                 <button class="btn-secondary" disabled>
                     <i class="fas fa-clock"></i> Coming Soon
                 </button>
+                <div class="download-info">
+                    <h4><i class="fas fa-clock"></i> Timeline</h4>
+                    <ul>
+                        <li>Planning stage</li>
+                        <li>Community feedback wanted</li>
+                        <li>Native Apple Silicon support</li>
+                    </ul>
+                </div>
             </div>
             
             <div class="download-card">
@@ -902,34 +916,44 @@
                 <button class="btn-secondary" disabled>
                     <i class="fas fa-clock"></i> Coming Soon
                 </button>
+                <div class="download-info">
+                    <h4><i class="fas fa-clock"></i> Timeline</h4>
+                    <ul>
+                        <li>Planning stage</li>
+                        <li>Community feedback wanted</li>
+                       
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Status Section -->
     <section class="status" id="status">
-        <h2 class="section-title">Project Status</h2>
-        <p class="section-subtitle">Transparent development with professional-grade delivery</p>
+        <h2 class="section-title">Development Status</h2>
+        <p class="section-subtitle">Transparent about what works and what's being built</p>
         
         <div class="status-grid">
             <div class="status-card">
-                <span class="status-badge status-working">STABLE & PRODUCTION READY</span>
-                <h3>Core Platform</h3>
+                <span class="status-badge status-working">STABLE & READY</span>
+                <h3>Core Functionality</h3>
                 <ul class="status-list">
                     <li>✅ PHP Server Auto-detection</li>
                     <li>✅ Node.js Project Management</li>
                     <li>✅ Flask Application Support</li>
                     <li>✅ Static File Server</li>
-                    <li>✅ Professional Web Interface</li>
+                    <li>✅ Web Interface</li>
                     <li>✅ Real-time Server Logs</li>
+                                        <li>✅ Multi device control</li>
+                                                            <li>✅ Multi-project management</li>
                 </ul>
             </div>
             
             <div class="status-card">
                 <span class="status-badge status-beta">BETA TESTING</span>
-                <h3>Advanced Features</h3>
+                <h3>Being Refined</h3>
                 <ul class="status-list">
-                    <li>🔧 Multi-project Management</li>
+                    <li>🔧 Search, More Settings</li>
                     <li>🔧 Hot Reload System</li>
                     <li>🔧 Theme System</li>
                     <li>⚠️ Public URL Tunneling</li>
@@ -939,7 +963,7 @@
             </div>
             
             <div class="status-card">
-                <span class="status-badge status-future">ROADMAP 2024</span>
+                <span class="status-badge status-future">PLANNED</span>
                 <h3>Future Development</h3>
                 <ul class="status-list">
                     <li>📅 One-click Cloud Deployment</li>
@@ -947,7 +971,7 @@
                     <li>📅 Database Management</li>
                     <li>📅 Plugin Ecosystem</li>
                     <li>📅 Mobile Companion App</li>
-                    <li>📅 Enterprise Features</li>
+                    <li>📅 Advanced Features</li>
                 </ul>
             </div>
         </div>
@@ -957,14 +981,17 @@
     <footer class="footer">
         <div class="footer-content">
             <p class="footer-text">
-                &copy; 2024 Modern Server Administrator. Built for the enterprise developer community.
+                &copy; 2025 Modern Server Administrator. Built by developers, for developers.
             </p>
             <p class="footer-text">
-                Free • Professional • No Tracking • Enterprise Grade
+                Free • Local-First • Privacy Respecting • Practical
             </p>
             <p class="footer-text" style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
-                <strong>Contact:</strong> enterprise@modernserveradmin.com | 
-                <strong>Support:</strong> Available for enterprise customers
+                <strong>Contact:</strong> ax.mohamed.soliman@gmail.com | 
+                <strong>Feedback:</strong> Always welcome
+            </p>
+            <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">
+                For contributors, investors, or anyone interested in the project's direction.
             </p>
         </div>
     </footer>
@@ -975,7 +1002,7 @@
             <div class="modal-header">
                 <h3 class="modal-title">
                     <i class="fas fa-play-circle"></i>
-                    Enterprise Demo • Modern Server Administrator
+                    Modern Server Administrator Demo
                 </h3>
                 <button class="close-modal" id="closeModal">
                     <i class="fas fa-times"></i>
@@ -994,7 +1021,7 @@
             
             <div class="modal-footer">
                 <i class="fas fa-info-circle"></i>
-                YouTube Enterprise Demo • Modern Server Administrator • Full controls enabled
+                YouTube Demo • Modern Server Administrator • Full controls enabled
             </div>
         </div>
     </div>
@@ -1030,34 +1057,12 @@
         const watchDemoBtn = document.getElementById('watchDemoBtn');
         const videoModal = document.getElementById('videoModal');
         const closeModal = document.getElementById('closeModal');
-        let youtubePlayer;
 
         // Open modal with perfect centering
         watchDemoBtn.addEventListener('click', () => {
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // YouTube API for control
-            if (!youtubePlayer) {
-                const tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            }
         });
-
-        // YouTube API ready
-        function onYouTubeIframeAPIReady() {
-            youtubePlayer = new YT.Player('youtube-iframe', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Player is ready, can add custom controls if needed
-        }
 
         // Close modal with smooth animation
         function closeVideoModal() {
@@ -1086,8 +1091,9 @@
             }
         });
 
-        console.log('Modern Server Administrator - Enterprise Edition');
-        console.log('Professional local development environment loaded.');
+        console.log('Modern Server Administrator - Beta');
+        console.log('Thank you for checking out our project.');
+        console.log('Contact: ax.mohamed.soliman@gmail.com');
     </script>
 </body>
 </html>
