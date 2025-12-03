@@ -799,10 +799,10 @@
             const versionElements = document.querySelectorAll('.version-info');
             versionElements.forEach(el => {
                 if (el.textContent.includes('')) {
-                    el.innerHTML = `File size: 92 MB • Windows 10/11 (64-bit) 
-                    <span class="version-badge">v${latestVersion}</span>
+                    el.innerHTML = `• Windows 10/11
+                    <span class="version-badge">${latestVersion}</span>
                     <span style="margin-left: 10px; color: var(--text-secondary); font-size: 0.85rem;">
-                        (You have v${currentVersion})
+                        ${currentVersion})
                     </span>`;
                 }
             });
