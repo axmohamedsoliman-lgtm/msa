@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Required - Modern Server Administrator</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
+    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E
+      %3Crect width='64' height='64' rx='12' fill='%23000000'/%3E
+      %3Cpath fill='%23E6E6E6' d='M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z'/%3E
+    %3C/svg%3E">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-accent: #58a6ff;
+            --border-primary: #30363d;
+            --border-secondary: #21262d;
+            --accent-blue: #1f6feb;
+            --accent-green: #238636;
+            --accent-yellow: #d29922;
+            --accent-purple: #8957e5;
+            --gradient-primary: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%);
+            --gradient-secondary: linear-gradient(135deg, #238636 0%, #1f6feb 100%);
+            --gradient-update: linear-gradient(135deg, #d29922 0%, #daaa3d 100%);
+            --gradient-update-hover: linear-gradient(135deg, #e3a326 0%, #e5b44a 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Professional Header */
+        .navbar {
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-primary);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #000000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            background: #E6E6E6;
+            border-radius: 6px;
+            position: relative;
+            z-index: 2;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 11.5c-1.4 2.1-2.9 4.6-3.6 7.3-.7 2.7 0 5.4.8 8.1-1.6-.7-3.2-1.4-4.8-2.0-2.3-1.0-5.3-.6-6.9 1.6-1.4 1.6.7 3.3 2.3 3.7 2.5.8 5 1.9 7.4 2.7-1.5 1.6-2.4 3.7-2.4 5.9 0 4.1 3.4 7.3 7.7 7.3s7.7-3.3 7.7-7.3c0-2.2-.9-4.3-2.4-5.9 2.4-.8 4.9-1.9 7.4-2.7 1.6-.4 3.7-2.1 2.3-3.7-1.6-2.2-4.6-2.6-6.9-1.6-1.6.6-3.2 1.3-4.8 2.0.8-2.7 1.5-5.4.8-8.1-.7-2.7-2.2-5.2-3.6-7.3z'/%3E%3C/svg%3E");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: 24px;
+            mask-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Update Main Content */
+        .update-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .update-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .update-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-update);
+        }
+
+        .update-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .update-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(210, 153, 34, 0.15);
+            color: var(--accent-yellow);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(210, 153, 34, 0.3);
+        }
+
+        .update-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-yellow) 0%, #f0f6fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .update-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Quick Download Section - AT THE TOP */
+        .quick-download-section {
+            background: linear-gradient(135deg, rgba(210, 153, 34, 0.08) 0%, rgba(13, 17, 23, 0.6) 100%);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(210, 153, 34, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-download-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-update);
+        }
+
+        .quick-note {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-note strong {
+            color: var(--accent-yellow);
+        }
+
+        .btn-quick-download {
+            background: var(--gradient-update);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(210, 153, 34, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-quick-download:hover {
+            background: var(--gradient-update-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(210, 153, 34, 0.4);
+        }
+
+        .quick-download-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .quick-info-item i {
+            color: var(--accent-yellow);
+        }
+
+        /* Update Info Section */
+        .update-info {
+            background: rgba(13, 17, 23, 0.7);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(210, 153, 34, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-yellow);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(210, 153, 34, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-yellow);
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .info-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Update Steps */
+        .update-steps {
+            margin-bottom: 3rem;
+        }
+
+        .steps-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .steps-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            counter-increment: step-counter;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            border-color: var(--accent-yellow);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-update);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .step-number::before {
+            content: counter(step-counter);
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Download Section (Secondary) */
+        .download-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(210, 153, 34, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(210, 153, 34, 0.1);
+        }
+
+        .download-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary-download {
+            background: rgba(31, 111, 235, 0.1);
+            color: var(--accent-blue);
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(31, 111, 235, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary-download:hover {
+            background: rgba(31, 111, 235, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .version-info {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(31, 111, 235, 0.1);
+            color: var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Important Notice */
+        .important-notice {
+            background: rgba(210, 153, 34, 0.1);
+            border-left: 4px solid var(--accent-yellow);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .notice-icon {
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .notice-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .notice-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-primary);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes highlight {
+            0%, 100% { box-shadow: 0 10px 30px rgba(210, 153, 34, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(210, 153, 34, 0.6), 0 0 0 5px rgba(210, 153, 34, 0.1); }
+        }
+
+        .highlight {
+            animation: highlight 2s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .update-container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+            
+            .update-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .update-title {
+                font-size: 2rem;
+            }
+            
+            .update-subtitle {
+                font-size: 1rem;
+            }
+            
+            .quick-download-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .quick-note {
+                font-size: 1.1rem;
+            }
+            
+            .btn-quick-download {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 24px;
+            }
+            
+            .quick-download-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Professional Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                Modern Server Admin
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link">← Return to Application</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Update Content -->
+    <main class="update-container">
+        <div class="update-card">
+            <!-- Header -->
+            <div class="update-header">
+                <div class="update-badge">
+                    <i class="fas fa-sync-alt floating"></i>
+                    UPDATE REQUIRED
+                </div>
+                <h1 class="update-title">New Version Available</h1>
+                <p class="update-subtitle">
+                    Your current version of Modern Server Administrator is no longer supported. 
+                    Please install the latest update to continue using all features securely.
+                </p>
+            </div>
+
+            <!-- QUICK DOWNLOAD SECTION - AT THE TOP -->
+            <div class="quick-download-section highlight">
+                <p class="quick-note">
+                    <strong>Important:</strong> You must install this update to continue using the application. 
+                    Your projects and settings will be preserved. 
+                    The download and installation take about 1 minute.
+                </p>
+                
+                <a href="https://github.com/your-username/modern-server-admin/releases/latest/download/modernserveradministrator-setup.exe" 
+                   class="btn-quick-download">
+                    <i class="fas fa-download"></i>
+                    Download Update Now (v2.1.0)
+                </a>
+                
+                <div class="quick-download-info">
+                    <div class="quick-info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security & Bug Fixes</span>
+                    </div>
+                    <div class="quick-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>1 Minute Installation</span>
+                    </div>
+                    <div class="quick-info-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Settings Preserved</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Info Section -->
+            <div class="update-info">
+                <h3 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    What's in this update?
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Security Enhancements</h4>
+                            <p>Critical security patches and vulnerability fixes</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Performance Improvements</h4>
+                            <p>Faster server startup and reduced memory usage</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>New Features</h4>
+                            <p>Hot reload, theme system, and improved dashboard</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Bug Fixes</h4>
+                            <p>Resolved issues reported by the community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Steps -->
+            <div class="update-steps">
+                <h3 class="steps-title">Update Instructions</h3>
+                <ol class="steps-list">
+                    <li class="step-item">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>Download the Update</h4>
+                            <p>Click the download button above to get the latest installer</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>Close the Application</h4>
+                            <p>Make sure Modern Server Administrator is completely closed</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>Run the Installer</h4>
+                            <p>Execute the downloaded file and follow the installation steps</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h4>Restart & Enjoy</h4>
+                            <p>Launch the updated application and continue your work</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Secondary Download Section -->
+            <div class="download-section">
+                <h3 class="download-title">Need to download again?</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    If the download didn't start or you need a fresh copy:
+                </p>
+                <a href="https://github.com/your-username/modern-server-admin/releases/latest/download/modernserveradministrator-setup.exe" 
+                   class="btn-secondary-download">
+                    <i class="fas fa-download"></i>
+                    Download Again
+                </a>
+                <div class="version-info">
+                    File size: 92 MB • Windows 10/11 (64-bit) 
+                    <span class="version-badge">v2.1.0</span>
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="important-notice">
+                <div class="notice-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notice-content">
+                    <h4>Important Notice</h4>
+                    <p>
+                        The application will remain unavailable until you install this update. 
+                        This is required for security and compatibility reasons. 
+                        If you encounter any issues during the update process, please contact 
+                        <a href="mailto:ax.mohamed.soliman@gmail.com" style="color: var(--accent-yellow); text-decoration: none;">ax.mohamed.soliman@gmail.com</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                &copy; 2025 Modern Server Administrator. Update required for continued use.
+            </p>
+            <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <i class="fas fa-sync-alt" style="margin-right: 5px;"></i>
+                Automatic updates coming in a future release
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Display current version info (simulated)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate checking for version
+            const currentVersion = "2.0.3";
+            const latestVersion = "2.1.0";
+            
+            // Update version info in the UI
+            const versionElements = document.querySelectorAll('.version-info');
+            versionElements.forEach(el => {
+                if (el.textContent.includes('v2.1.0')) {
+                    el.innerHTML = `File size: 92 MB • Windows 10/11 (64-bit) 
+                    <span class="version-badge">v${latestVersion}</span>
+                    <span style="margin-left: 10px; color: var(--text-secondary); font-size: 0.85rem;">
+                        (You have v${currentVersion})
+                    </span>`;
+                }
+            });
+            
+            // Add floating animation to update badge
+            const updateBadge = document.querySelector('.update-badge');
+            if (updateBadge) {
+                setInterval(() => {
+                    updateBadge.classList.toggle('floating');
+                }, 3000);
+            }
+            
+            // Add highlight animation to quick download section
+            const quickDownloadSection = document.querySelector('.quick-download-section');
+            if (quickDownloadSection) {
+                setTimeout(() => {
+                    quickDownloadSection.classList.add('highlight');
+                }, 1000);
+            }
+            
+            // Log for debugging
+            console.log('Update Required Page Loaded');
+            console.log(`Current: v${currentVersion} | Latest: v${latestVersion}`);
+            console.log('Redirected from application due to update requirement');
+        });
+
+        // Simulate a return to app button click
+        document.querySelector('.nav-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Please install the update before returning to the application.');
+        });
+
+        // Track download button clicks
+        document.querySelectorAll('a[href*="download"]').forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('Download initiated for update v2.1.0');
+                // You could add analytics tracking here
+            });
+        });
+    </script>
+</body>
+</html>
