@@ -623,10 +623,10 @@
                     The download and installation take about 1 minute.
                 </p>
                 
-                <a href="https://github.com/your-username/modern-server-admin/releases/latest/download/modernserveradministrator-setup.exe" 
+                <a href="https://www.dropbox.com/scl/fi/i8qfcb7qlg6k13h9dd3bt/MSA-Setup.exe?rlkey=p6hk11g9u96310ajuxsi76bkx&st=780vqmil&dl=1" 
                    class="btn-quick-download">
                     <i class="fas fa-download"></i>
-                    Download Update Now (v2.1.0)
+                    Download Update Now
                 </a>
                 
                 <div class="quick-download-info">
@@ -732,14 +732,14 @@
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;">
                     If the download didn't start or you need a fresh copy:
                 </p>
-                <a href="https://github.com/your-username/modern-server-admin/releases/latest/download/modernserveradministrator-setup.exe" 
+                <a href="https://www.dropbox.com/scl/fi/i8qfcb7qlg6k13h9dd3bt/MSA-Setup.exe?rlkey=p6hk11g9u96310ajuxsi76bkx&st=780vqmil&dl=1" 
                    class="btn-secondary-download">
                     <i class="fas fa-download"></i>
                     Download Again
                 </a>
                 <div class="version-info">
                     File size: 92 MB • Windows 10/11 (64-bit) 
-                    <span class="version-badge">v2.1.0</span>
+                    <span class="version-badge"></span>
                 </div>
             </div>
 
@@ -792,13 +792,13 @@
         // Display current version info (simulated)
         document.addEventListener('DOMContentLoaded', function() {
             // Simulate checking for version
-            const currentVersion = "2.0.3";
-            const latestVersion = "2.1.0";
+            const currentVersion = "";
+            const latestVersion = "";
             
             // Update version info in the UI
             const versionElements = document.querySelectorAll('.version-info');
             versionElements.forEach(el => {
-                if (el.textContent.includes('v2.1.0')) {
+                if (el.textContent.includes('')) {
                     el.innerHTML = `File size: 92 MB • Windows 10/11 (64-bit) 
                     <span class="version-badge">v${latestVersion}</span>
                     <span style="margin-left: 10px; color: var(--text-secondary); font-size: 0.85rem;">
@@ -838,7 +838,7 @@
         // Track download button clicks
         document.querySelectorAll('a[href*="download"]').forEach(button => {
             button.addEventListener('click', function() {
-                console.log('Download initiated for update v2.1.0');
+                console.log('Download initiated for update ');
                 // You could add analytics tracking here
             });
         });
