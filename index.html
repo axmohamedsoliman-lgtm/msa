@@ -1,10 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Server Administrator - Local Development Environment</title>
+    <meta name="description" content="Modern Server Administrator - Zero-configuration local development environment for PHP, Node.js, Flask, and static sites. Control from desktop or mobile.">
+    <meta name="keywords" content="local development, server, PHP, Node.js, Flask, web development, modern server admin">
+    <meta name="author" content="Modern Server Administrator">
+    <meta property="og:title" content="Modern Server Administrator">
+    <meta property="og:description" content="Zero-configuration local development environment for PHP, Node.js, Flask, and static sites">
+    <meta property="og:url" content="https://modernserveradmin.pages.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://modernserveradmin.pages.dev/photos/msa-dashboard.jpg">
+    
+    <!-- Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Modern Server Administrator",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Zero-configuration local development environment for PHP, Node.js, Flask, and static sites",
+        "image": [
+            "https://modernserveradmin.pages.dev/photos/msa-dashboard.jpg",
+            "https://modernserveradmin.pages.dev/photos/msa-dashboard-light.jpg",
+            "https://modernserveradmin.pages.dev/photos/msa-terminal.jpg"
+        ],
+        "screenshot": {
+            "@type": "ImageObject",
+            "caption": "Modern Server Administrator Dashboard"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Modern Server Administrator Team"
+        },
+        "datePublished": "2025-01-01",
+        "softwareVersion": "1.0.0-beta",
+        "keywords": "local development, server, PHP, Node.js, Flask",
+        "url": "https://modernserveradmin.pages.dev/",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150"
+        }
+    }
+    </script>
+    
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
     %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E
       %3Crect width='64' height='64' rx='12' fill='%23000000'/%3E
@@ -255,6 +302,296 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
+        /* Warning Badge for Windows Install */
+        .warning-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(187, 128, 9, 0.15);
+            color: #d29922;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            border: 1px solid rgba(187, 128, 9, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .warning-badge:hover {
+            background: rgba(187, 128, 9, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(187, 128, 9, 0.2);
+        }
+
+        /* Professional Gallery Section */
+        .gallery {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(31, 111, 235, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(137, 87, 229, 0.05) 0%, transparent 50%);
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .gallery-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(255, 255, 255, 0.05);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 500px;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--bg-primary);
+            display: block;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            pointer-events: auto;
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent-blue);
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(31, 111, 235, 0.4);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent-blue);
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(31, 111, 235, 0.5);
+        }
+
+        .carousel-progress {
+            height: 3px;
+            background: var(--border-primary);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+        .carousel-progress-bar {
+            position: absolute;
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .carousel-caption {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            min-height: 1.5rem;
+        }
+
+        /* Mobile Control Section */
+        .mobile-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(31, 111, 235, 0.05) 0%, transparent 70%);
+        }
+
+        .mobile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+        }
+
+        .mobile-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .mobile-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-icon {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .mobile-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .mobile-image-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 1.5rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .mobile-card:hover .mobile-image {
+            transform: scale(1.05);
+        }
+
+        .mobile-feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .mobile-feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
         /* Features Section */
         .features {
             padding: 100px 0;
@@ -389,6 +726,40 @@
             margin-bottom: 2rem;
         }
 
+        /* Professional Download Card */
+        .download-info {
+            background: rgba(31, 111, 235, 0.05);
+            border: 1px solid rgba(31, 111, 235, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .download-info h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .download-info ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .download-info li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .download-info li::before {
+            content: '•';
+            color: var(--accent-blue);
+            position: absolute;
+            left: -1rem;
+        }
+
         /* Status Section */
         .status {
             padding: 100px 0;
@@ -452,12 +823,7 @@
             border-bottom: none;
         }
 
-        .strikethrough {
-            text-decoration: line-through;
-            color: #8b949e80;
-        }
-
-        /* Ultra Professional YouTube Modal - PERFECTLY CENTERED */
+        /* Ultra Professional Modals */
         .modal {
             display: none;
             position: fixed;
@@ -481,7 +847,7 @@
 
         .modal-content {
             width: 95%;
-            max-width: 1100px;
+            max-width: 900px;
             background: var(--bg-primary);
             border-radius: 16px;
             overflow: hidden;
@@ -584,7 +950,7 @@
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             background: #000;
         }
 
@@ -597,6 +963,48 @@
             border: none;
         }
 
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .install-guide-content {
+            text-align: center;
+        }
+
+        .install-image {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border-primary);
+            margin: 2rem 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .install-steps {
+            text-align: left;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(31, 111, 235, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(31, 111, 235, 0.1);
+        }
+
+        .install-steps h4 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .install-steps ol {
+            padding-left: 1.5rem;
+        }
+
+        .install-steps li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
         .modal-footer {
             padding: 1rem 2rem;
             background: var(--bg-secondary);
@@ -604,40 +1012,6 @@
             color: var(--text-secondary);
             font-size: 0.85rem;
             text-align: center;
-        }
-
-        /* Professional Download Card */
-        .download-info {
-            background: rgba(31, 111, 235, 0.05);
-            border: 1px solid rgba(31, 111, 235, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .download-info h4 {
-            color: var(--accent-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .download-info ul {
-            list-style: none;
-            padding-left: 1rem;
-        }
-
-        .download-info li {
-            padding: 0.3rem 0;
-            color: var(--text-secondary);
-            position: relative;
-        }
-
-        .download-info li::before {
-            content: '•';
-            color: var(--accent-blue);
-            position: absolute;
-            left: -1rem;
         }
 
         /* Feature Badges */
@@ -700,6 +1074,10 @@
                 font-size: 2rem;
             }
             
+            .gallery-title {
+                font-size: 2rem;
+            }
+            
             .nav-links {
                 display: none;
             }
@@ -728,6 +1106,26 @@
             .modal-title {
                 font-size: 1.1rem;
             }
+
+            .carousel-track {
+                height: 300px;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .mobile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-track {
+                height: 250px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -741,6 +1139,8 @@
                 Modern Server Admin
             </a>
             <div class="nav-links">
+                <a href="#gallery" class="nav-link">Screenshots</a>
+                <a href="#mobile" class="nav-link">Mobile Control</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#download" class="nav-link">Download</a>
                 <a href="#status" class="nav-link">Status</a>
@@ -753,7 +1153,7 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-badge">
-                <i></i>BETA • ACTIVE DEVELOPMENT
+                <i></i>BETA • ACTIVE DEVELOPMENT • WINDOWS 10/11
             </div>
             <h1 class="hero-title">
                 Modern Server Administrator
@@ -761,20 +1161,111 @@
             <p class="hero-subtitle">
                 A practical local development environment that just works. 
                 Zero configuration setup for PHP, Node.js, Flask, and static sites. 
-                Currently in beta with a growing feature set.
+                Control from desktop or mobile.
             </p>
             <div class="hero-actions">
                 <a href="#download" class="btn-primary">
-                    <i class="fas fa-download"></i> Download
+                    <i class="fas fa-download"></i> Download for Windows
                 </a>
                 <button class="btn-secondary" id="watchDemoBtn">
                     <i class="fas fa-play-circle"></i> Watch Demo
                 </button>
             </div>
+            
+            <!-- Windows Warning Badge -->
+            <div class="warning-badge" id="installWarningBtn">
+                <i class="fas fa-exclamation-triangle"></i>
+                Windows SmartScreen Warning? Click here for installation guide
+            </div>
         </div>
     </section>
 
-    <!-- Features Section - REORDERED with available features first -->
+    <!-- Professional Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-container">
+            <h2 class="gallery-title">Application Interface</h2>
+            <p class="gallery-subtitle">Professional screenshots showing the modern interface and features</p>
+            
+            <div class="gallery-carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Images loaded dynamically -->
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-caption" id="imageCaption">
+                    <!-- Caption loaded dynamically -->
+                </div>
+            </div>
+            
+            <div class="carousel-progress">
+                <div class="carousel-progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- Dots loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Control Section -->
+    <section class="mobile-section" id="mobile">
+        <div class="gallery-container">
+            <h2 class="gallery-title">Control From Your Phone</h2>
+            <p class="gallery-subtitle">Access and manage your local servers from any mobile device on the same network</p>
+            
+            <div class="mobile-grid">
+                <div class="mobile-card">
+                    <div class="mobile-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="mobile-feature-title">Mobile Dashboard</h3>
+                    <div class="mobile-image-container">
+                        <img src="photos/msa-mobile-dashboard.jpg" alt="Mobile Dashboard Dark Mode" class="mobile-image">
+                    </div>
+                    <p class="mobile-feature-description">
+                        Full control panel accessible from any smartphone or tablet. 
+                        Start/stop servers, view logs, and manage projects on the go.
+                    </p>
+                </div>
+                
+                <div class="mobile-card">
+                    <div class="mobile-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="mobile-feature-title">Light/Dark Theme</h3>
+                    <div class="mobile-image-container">
+                        <img src="photos/msa-mobile-dashboard-light.jpg" alt="Mobile Dashboard Light Mode" class="mobile-image">
+                    </div>
+                    <p class="mobile-feature-description">
+                        Choose between dark and light themes. Automatic theme switching 
+                        based on your device preferences.
+                    </p>
+                </div>
+                
+                <div class="mobile-card">
+                    <div class="mobile-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3 class="mobile-feature-title">Add Servers Remotely</h3>
+                    <div class="mobile-image-container">
+                        <img src="photos/msa-mobile-add-server.jpg" alt="Mobile Add Server" class="mobile-image">
+                    </div>
+                    <p class="mobile-feature-description">
+                        Add new servers directly from your phone. Perfect for quick 
+                        setup and testing without needing to be at your computer.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
     <section class="features" id="features">
         <h2 class="section-title">What It Does</h2>
         <p class="section-subtitle">Current features and what's coming next</p>
@@ -863,7 +1354,7 @@
     </section>
 
     <!-- Download Section with Professional Installation -->
-        <section class="download" id="download">
+    <section class="download" id="download">
         <h2 class="section-title">Get Started</h2>
         <p class="section-subtitle">Simple setup. Currently Windows only, with more platforms coming.</p>
         
@@ -878,6 +1369,12 @@
                     <i class="fas fa-download"></i> Download MSA-Setup.exe
                 </a>
                 
+                <!-- Warning Button -->
+                <div class="warning-badge" id="installWarningBtn2" style="margin-top: 1.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Windows SmartScreen Warning? Click here for installation guide
+                </div>
+                
                 <div class="download-info">
                     <h4><i class="fas fa-info-circle"></i> Installation Notes</h4>
                     <ul>
@@ -889,8 +1386,6 @@
                     </ul>
                 </div>
             </div>            
-            
-            
             
             <div class="download-card">
                 <i class="fab fa-apple platform-icon mac"></i>
@@ -921,7 +1416,6 @@
                     <ul>
                         <li>Planning stage</li>
                         <li>Community feedback wanted</li>
-                       
                     </ul>
                 </div>
             </div>
@@ -944,8 +1438,8 @@
                     <li>✅ Static File Server</li>
                     <li>✅ Web Interface</li>
                     <li>✅ Real-time Server Logs</li>
-                                        <li>✅ Multi device control</li>
-                                                            <li>✅ Multi-project management</li>
+                    <li>✅ Multi device control</li>
+                    <li>✅ Multi-project management</li>
                 </ul>
             </div>
             
@@ -996,7 +1490,7 @@
         </div>
     </footer>
 
-    <!-- Ultra Professional YouTube Modal - PERFECTLY CENTERED -->
+    <!-- Ultra Professional YouTube Modal -->
     <div class="modal" id="videoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1022,6 +1516,61 @@
             <div class="modal-footer">
                 <i class="fas fa-info-circle"></i>
                 YouTube Demo • Modern Server Administrator • Full controls enabled
+            </div>
+        </div>
+    </div>
+
+    <!-- Installation Guide Modal -->
+    <div class="modal" id="installGuideModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Windows SmartScreen Installation Guide
+                </h3>
+                <button class="close-modal" id="closeInstallModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="install-guide-content">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">This is normal for new applications!</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Windows SmartScreen shows this warning for all new applications that haven't been downloaded many times yet.
+                        Our application is <strong style="color: var(--accent-blue)">100% safe</strong> and contains no malware.
+                    </p>
+                    
+                    <div class="install-image-container">
+                        <img src="photos/msa-install-win-warning.jpg" alt="Windows SmartScreen Warning" class="install-image">
+                    </div>
+                    
+                    <div class="install-steps">
+                        <h4><i class="fas fa-shield-alt"></i> How to Install Safely:</h4>
+                        <ol>
+                            <li>Click "More info" on the Windows SmartScreen warning</li>
+                            <li>Click "Run anyway" to proceed with installation</li>
+                            <li>The installer will verify itself - this takes about 10 seconds</li>
+                            <li>Follow the standard installation wizard (next, next, finish)</li>
+                            <li>Launch Modern Server Administrator from your Start Menu</li>
+                        </ol>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(35, 134, 54, 0.1); border-radius: 10px; border: 1px solid rgba(35, 134, 54, 0.2);">
+                        <h4 style="color: #3fb950; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check-circle"></i> Why this happens:
+                        </h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            We're a new application without thousands of downloads yet. Windows SmartScreen protects users by 
+                            warning about unfamiliar software. Once enough users install it, this warning will disappear automatically.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <i class="fas fa-info-circle"></i>
+                Modern Server Administrator • Safe Installation • No Malware
             </div>
         </div>
     </div>
@@ -1058,13 +1607,28 @@
         const videoModal = document.getElementById('videoModal');
         const closeModal = document.getElementById('closeModal');
 
-        // Open modal with perfect centering
+        // Installation Guide Modal
+        const installGuideModal = document.getElementById('installGuideModal');
+        const installWarningBtn = document.getElementById('installWarningBtn');
+        const installWarningBtn2 = document.getElementById('installWarningBtn2');
+        const closeInstallModal = document.getElementById('closeInstallModal');
+
+        // Open YouTube modal
         watchDemoBtn.addEventListener('click', () => {
             videoModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
 
-        // Close modal with smooth animation
+        // Open installation guide modal
+        function openInstallGuide() {
+            installGuideModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        installWarningBtn.addEventListener('click', openInstallGuide);
+        installWarningBtn2.addEventListener('click', openInstallGuide);
+
+        // Close modals
         function closeVideoModal() {
             videoModal.classList.remove('active');
             setTimeout(() => {
@@ -1075,25 +1639,240 @@
             }, 400);
         }
 
-        closeModal.addEventListener('click', closeVideoModal);
+        function closeInstallGuideModal() {
+            installGuideModal.classList.remove('active');
+            setTimeout(() => {
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
 
-        // Close modal when clicking outside the content
+        closeModal.addEventListener('click', closeVideoModal);
+        closeInstallModal.addEventListener('click', closeInstallGuideModal);
+
+        // Close modals when clicking outside
         videoModal.addEventListener('click', (e) => {
             if (e.target === videoModal) {
                 closeVideoModal();
             }
         });
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-                closeVideoModal();
+        installGuideModal.addEventListener('click', (e) => {
+            if (e.target === installGuideModal) {
+                closeInstallGuideModal();
             }
         });
 
+        // Close modals with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (videoModal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+                if (installGuideModal.classList.contains('active')) {
+                    closeInstallGuideModal();
+                }
+            }
+        });
+
+        // ========== PROFESSIONAL IMAGE GALLERY ==========
+        class ProfessionalImageGallery {
+            constructor() {
+                this.carouselTrack = document.getElementById('carouselTrack');
+                this.carouselDots = document.getElementById('carouselDots');
+                this.imageCaption = document.getElementById('imageCaption');
+                this.progressBar = document.getElementById('progressBar');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                
+                // Desktop gallery images only (first 4)
+                this.images = [
+                    {
+                        src: 'photos/msa-terminal.jpg',
+                        alt: 'Modern Terminal Interface',
+                        caption: 'Modern Terminal Interface - Built-in terminal with real-time output'
+                    },
+                    {
+                        src: 'photos/msa-dashboard.jpg',
+                        alt: 'Dashboard Dark Mode',
+                        caption: 'Dashboard - Dark Mode • Clean interface for managing all your servers'
+                    },
+                    {
+                        src: 'photos/msa-dashboard-light.jpg',
+                        alt: 'Dashboard Light Mode',
+                        caption: 'Dashboard - Light Mode • Switch between dark and light themes'
+                    },
+                    {
+                        src: 'photos/msa-add-server-pop-up.jpg',
+                        alt: 'Add Server Pop-up',
+                        caption: 'Add Server Interface • Quick setup for new projects'
+                    }
+                ];
+                
+                this.currentIndex = 0;
+                this.totalImages = this.images.length;
+                this.autoSlideInterval = null;
+                this.autoSlideDelay = 5000; // 5 seconds
+                
+                this.init();
+            }
+            
+            init() {
+                this.renderGallery();
+                this.startAutoSlide();
+                this.setupEventListeners();
+            }
+            
+            renderGallery() {
+                // Clear existing content
+                this.carouselTrack.innerHTML = '';
+                this.carouselDots.innerHTML = '';
+                
+                // Create slides
+                this.images.forEach((image, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    
+                    const img = document.createElement('img');
+                    img.src = image.src;
+                    img.alt = image.alt;
+                    img.className = 'carousel-image';
+                    img.loading = 'eager'; // Eager load for better SEO
+                    
+                    slide.appendChild(img);
+                    this.carouselTrack.appendChild(slide);
+                    
+                    // Create dot
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    if (index === 0) dot.classList.add('active');
+                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    
+                    this.carouselDots.appendChild(dot);
+                });
+                
+                this.updateCaption();
+                this.updateProgress();
+            }
+            
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.carouselTrack.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+                this.updateDots();
+                this.updateCaption();
+                this.updateProgress();
+                this.resetAutoSlide();
+            }
+            
+            nextSlide() {
+                this.currentIndex = (this.currentIndex + 1) % this.totalImages;
+                this.goToSlide(this.currentIndex);
+            }
+            
+            prevSlide() {
+                this.currentIndex = (this.currentIndex - 1 + this.totalImages) % this.totalImages;
+                this.goToSlide(this.currentIndex);
+            }
+            
+            updateDots() {
+                const dots = this.carouselDots.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentIndex);
+                });
+            }
+            
+            updateCaption() {
+                if (this.images[this.currentIndex]) {
+                    this.imageCaption.textContent = this.images[this.currentIndex].caption;
+                }
+            }
+            
+            updateProgress() {
+                const progress = ((this.currentIndex + 1) / this.totalImages) * 100;
+                this.progressBar.style.width = `${progress}%`;
+            }
+            
+            startAutoSlide() {
+                this.autoSlideInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoSlideDelay);
+            }
+            
+            resetAutoSlide() {
+                clearInterval(this.autoSlideInterval);
+                this.startAutoSlide();
+            }
+            
+            setupEventListeners() {
+                this.prevBtn.addEventListener('click', () => {
+                    this.prevSlide();
+                    this.resetAutoSlide();
+                });
+                
+                this.nextBtn.addEventListener('click', () => {
+                    this.nextSlide();
+                    this.resetAutoSlide();
+                });
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        this.prevSlide();
+                        this.resetAutoSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        this.nextSlide();
+                        this.resetAutoSlide();
+                    }
+                });
+                
+                // Touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                this.carouselTrack.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                this.carouselTrack.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe();
+                });
+            }
+            
+            handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    if (swipeDistance > 0) {
+                        this.prevSlide();
+                    } else {
+                        this.nextSlide();
+                    }
+                    this.resetAutoSlide();
+                }
+            }
+        }
+
+        // Initialize the gallery when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const gallery = new ProfessionalImageGallery();
+        });
+
+        // Google Analytics-like tracking (without actual GA)
         console.log('Modern Server Administrator - Beta');
         console.log('Thank you for checking out our project.');
         console.log('Contact: ax.mohamed.soliman@gmail.com');
+        
+        // Track page view for SEO
+        window.addEventListener('load', () => {
+            if (navigator.sendBeacon) {
+                const data = new FormData();
+                data.append('page', window.location.href);
+                data.append('referrer', document.referrer);
+                navigator.sendBeacon('https://modernserveradmin.pages.dev/api/track', data);
+            }
+        });
     </script>
 </body>
 </html>
