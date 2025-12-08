@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+
+Sitemap: https://modernserveradmin.pages.dev/sitemap.xml
