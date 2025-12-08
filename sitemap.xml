@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <url>
+        <loc>https://modernserveradmin.pages.dev/</loc>
+        <lastmod>2025-01-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        
+        <!-- Image sitemap entries for better Google Images indexing -->
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-dashboard.jpg</image:loc>
+            <image:title>Modern Server Administrator Dashboard</image:title>
+            <image:caption>Clean web interface for managing local development servers</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-dashboard-light.jpg</image:loc>
+            <image:title>Modern Server Administrator Light Theme</image:title>
+            <image:caption>Light theme interface for the local development server</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-terminal.jpg</image:loc>
+            <image:title>Built-in Terminal Interface</image:title>
+            <image:caption>Integrated terminal for real-time server output</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-add-server-pop-up.jpg</image:loc>
+            <image:title>Add Server Interface</image:title>
+            <image:caption>Quick server setup with auto-detection</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-mobile-dashboard.jpg</image:loc>
+            <image:title>Mobile Dashboard Dark Mode</image:title>
+            <image:caption>Control servers from mobile devices</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-mobile-dashboard-light.jpg</image:loc>
+            <image:title>Mobile Dashboard Light Mode</image:title>
+            <image:caption>Mobile interface with light theme</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-mobile-add-server.jpg</image:loc>
+            <image:title>Mobile Add Server</image:title>
+            <image:caption>Add servers directly from mobile devices</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+        
+        <image:image>
+            <image:loc>https://modernserveradmin.pages.dev/photos/msa-install-win-warning.jpg</image:loc>
+            <image:title>Windows Installation Guide</image:title>
+            <image:caption>Safe installation instructions for Windows</image:caption>
+            <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
+        </image:image>
+    </url>
+</urlset>
